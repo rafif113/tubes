@@ -1,5 +1,5 @@
-const flashData = $('.flash-data').data('flashdata');
-const flashData1 = $('.flash-data').data('flashdata');
+const flashData  = $('.flash-data').data('flashdata');
+const flashData1 = $('.login-first').data('flashdata');
 
 
 if (flashData) {
@@ -7,6 +7,14 @@ if (flashData) {
     title: 'Data Profile ',
     text: 'Berhasil ' + flashData,
     icon: 'success'
+  });
+}
+
+if (flashData1) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Tambah barang terlebih dahulu'
   });
 }
 

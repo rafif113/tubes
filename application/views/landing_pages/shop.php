@@ -12,7 +12,7 @@
     </div>
 </div>
 <!-- Breadcrumb Section Begin -->
-<div class="flash-data" data-flashdata="<?= $this->session->flashdata('barang') ?>"></div>
+<div class="login-first" data-flashdata="<?= $this->session->flashdata('barang') ?>"></div>
 
 <!-- Product Shop Section Begin -->
 <section class="product-shop spad">
