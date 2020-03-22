@@ -1,5 +1,5 @@
 
-
+<div class="flash-login" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
@@ -10,7 +10,7 @@
                         <div class="col-lg-5">
                             <span><?php echo $data->sub_judul ?></span>
                             <h1 class="text-white"><?php echo $data->judul ?></h1>
-                            <!-- <p class="text-white"><?php echo $data->keterangan ?></p> -->
+                            <p class="text-white"><?php echo $data->keterangan ?></p>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
     </div>
     <!-- Banner Section End -->
 
-    <!-- Women Banner Section Begin -->
+    <!-- sayur Banner Section Begin -->
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
@@ -149,14 +149,14 @@
     <section class="man-banner spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mt-5">
                     <div class="filter-control">
                         <ul>
-                              <li class="active">Makanan</li>
+                              <li class="active">Buah Buahan</li>
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel">
-                      <?php foreach ($sayuran as $s): ?>
+                      <?php foreach ($buah as $s): ?>
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
@@ -164,7 +164,8 @@
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                  <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">
+                                    <i class="icon_bag_alt"></i></a></li>
                                     <li class="quick-view"><a href="<?php echo base_url('LandingPage/detail_produk/'.$s->id_produk) ?>">+ Lihat Barang</a></li>
                                 </ul>
                             </div>
@@ -182,9 +183,9 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg m-large" data-setbg="<?php echo base_url('assets/') ?>img/products/man-large.jpg">
-                        <h2>Men’s</h2>
-                        <a href="#">Discover More</a>
+                    <div class="product-large set-bg m-large" data-setbg="<?php echo base_url('images/') ?>buah.jpg">
+                        <h2>Buah buahan</h2>
+                        <a href="#">Buah</a>
                     </div>
                 </div>
             </div>

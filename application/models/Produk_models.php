@@ -9,6 +9,18 @@ class Produk_models extends CI_Model{
       return $query;
   }
 
+  public function getSembako()
+  {
+      $query = $this->db->get_where('tb_produk',['jenis_produk' => 'Sembako']);
+      return $query;
+  }
+
+  public function getBuah()
+  {
+      $query = $this->db->get_where('tb_produk',['jenis_produk' => 'Buah']);
+      return $query;
+  }
+
   public function getAllProduk()
   {
       $query = $this->db->get('tb_produk');

@@ -14,7 +14,7 @@
 <!-- Breadcrumb Form Section Begin -->
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
 <!-- UPDATE FOTO PROFILE -->
-<?php if (!empty($this->session->flashdata('status') ) ): ?>
+      <?php if (!empty($this->session->flashdata('status') ) ): ?>
         <div class="alert alert-danger">
             <?php echo $this->session->flashdata('status') ?>
         </div>

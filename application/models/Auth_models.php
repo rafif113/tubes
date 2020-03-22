@@ -7,6 +7,7 @@ class Auth_models extends CI_Model{
   {
     $this->db->where('username',$data['username']);
     $this->db->where('password',$data['password']);
+    $this->db->where('level','User');
     $query  = $this->db->get('tb_user');
     return $query;
   }

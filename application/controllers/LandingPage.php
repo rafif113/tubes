@@ -24,6 +24,8 @@ class LandingPage extends CI_Controller{
     $data['judul']   = 'Situs Jual Beli Produk UMKM';
     $data['artikel'] = $this->Artikel_models->getAllData()->result();
     $data['sayuran'] = $this->Produk_models->getSayur()->result();
+    $data['buah'] = $this->Produk_models->getBuah()->result();
+    $data['sembako'] = $this->Produk_models->getSembako()->result();
     $data['kategori'] = $this->Artikel_models->getSayur()->result();
     $this->load->view('layouts/header', $data);
     $this->load->view('landing_pages/index', $data);

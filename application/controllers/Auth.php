@@ -35,6 +35,7 @@ class Auth extends CI_Controller{
       $cek_user	= $this->Auth_models->login($data);
       if ($cek_user->num_rows() > 0) {
         $this->session->set_userdata($cek_user->row_array());
+        $this->session->set_flashdata('flash',$this->session->username);
         redirect(base_url());
 
       }else {
@@ -77,6 +78,7 @@ class Auth extends CI_Controller{
               'password'  => password_hash($password, PASSWORD_DEFAULT),
               'level'     => 'User',
               'tgl_daftar'=> $date,
+              'level'     => 'User',
               'status'    => 'Belum terverifikasi'
           );
 

@@ -35,7 +35,7 @@
           <div class="header-top">
               <div class="container">
                   <div class="ht-left">
-                      
+
                       <?php if ($this->session->username): ?>
                           <a class="phone-service" href="<?php echo base_url('User/profile') ?>"><i class=" fa fa-user"></i>
                           Profile</a>
@@ -50,7 +50,7 @@
                   <?php endif; ?>
                   <?php if ($this->session->username): ?>
                     <div class="ht-right">
-                        <a href="<?php echo base_url('auth/logout') ?>" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+                        <a href="<?php echo base_url('auth/logout') ?>" class="login-panel tombol-logout"><i class="fa fa-user"></i>Logout</a>
                     </div>
                   <?php endif; ?>
               </div>
