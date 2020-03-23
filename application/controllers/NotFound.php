@@ -9,4 +9,4 @@ class Notfound extends CI_Controller {
         $this->load->view('view_notfound');//loading view
     }
 }
-?> 
+?>

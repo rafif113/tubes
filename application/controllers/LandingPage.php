@@ -9,6 +9,7 @@ class LandingPage extends CI_Controller{
     $this->load->model('Artikel_models');
     $this->load->model('Produk_models');
     $this->load->model('User_models');
+    $this->load->model('Transaksi_models');
   }
 
   public function index()
@@ -24,9 +25,9 @@ class LandingPage extends CI_Controller{
     $data['judul']   = 'Situs Jual Beli Produk UMKM';
     $data['artikel'] = $this->Artikel_models->getAllData()->result();
     $data['sayuran'] = $this->Produk_models->getSayur()->result();
-    $data['buah'] = $this->Produk_models->getBuah()->result();
+    $data['buah']    = $this->Produk_models->getBuah()->result();
     $data['sembako'] = $this->Produk_models->getSembako()->result();
-    $data['kategori'] = $this->Artikel_models->getSayur()->result();
+    $data['kategori']= $this->Artikel_models->getSayur()->result();
     $this->load->view('layouts/header', $data);
     $this->load->view('landing_pages/index', $data);
     $this->load->view('layouts/footer');
@@ -58,6 +59,7 @@ class LandingPage extends CI_Controller{
         $username = $this->session->username;
         $user     = $this->User_models->data_user($username)->row();
 
+        $data['pengiriman'] = $this->Transaksi_models->getPengiriman()->row();
         $data['cart']  = $this->cart->contents();
         $data['user']  = $user;
         $data['judul'] = 'CheckOut | Produk UMKM';

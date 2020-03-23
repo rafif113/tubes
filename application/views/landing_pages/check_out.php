@@ -74,7 +74,10 @@
                 <li class="fw-normal"><?php echo $barang->nama_produk ?> x <?php echo $kr['qty'] ?>
                   <span>Rp <?php echo number_format($kr['subtotal']) ?></span></li>
                 <?php endforeach ?>
-                <li class="total-price">Total <span>Rp <?=number_format($this->cart->total())?></span></li>
+                <li class="fw-normal"><?php echo $pengiriman->nama_pengiriman ?>
+                  <span>Rp <?php echo number_format($pengiriman->harga_pengiriman) ?></span></li>
+                  <?php $total = $this->cart->total() + $pengiriman->harga_pengiriman ?>
+                <li class="total-price">Total <span>Rp <?=number_format($total)?></span></li>
               </ul>
               <div class="payment-check">
                 <div class="pc-item">
@@ -86,8 +89,8 @@
                 </div>
                 <div class="pc-item">
                   <label for="pc-paypal">
-                    Paypal
-                    <input type="checkbox" id="pc-paypal">
+                    <?php echo $pengiriman->nama_pengiriman ?>
+                    <input type="checkbox" id="pc-paypal" checked disabled>
                     <span class="checkmark"></span>
                   </label>
                 </div>
