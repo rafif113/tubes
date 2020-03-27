@@ -15,12 +15,12 @@ class LandingPage extends CI_Controller{
   public function index()
   {
     //ambil data keyword
-    if ($this->input->post('submit')) {
-      $data['keyword'] = $this->input->post('keyword');
-      $this->session->set_userdata('keyword',$data['keyword']);
-    }else {
-      $data['keyword'] = $this->session->userdata('keyword');
-    }
+    // if ($this->input->post('submit')) {
+    //   $data['keyword'] = $this->input->post('keyword');
+    //   $this->session->set_userdata('keyword',$data['keyword']);
+    // }else {
+    //   $data['keyword'] = $this->session->userdata('keyword');
+    // }
 
     $data['judul']   = 'Situs Jual Beli Produk UMKM';
     $data['artikel'] = $this->Artikel_models->getAllData()->result();
@@ -80,7 +80,7 @@ class LandingPage extends CI_Controller{
     $this->load->helper('string');
     date_default_timezone_set('Asia/Jakarta');
     $cart             = $this->cart->contents();
-    $id_transaksi     = $this->Produk_models->id_transaksi();
+    $id_transaksi     = $this->Transaksi_models->id_transaksi();
     $id_user          = $this->session->id_user;
     $id_pengiriman    = $this->Transaksi_models->getPengiriman()->row();
     $tanggal_deadline = date('Y-m-d H:i:s', time() + (60 * 60 * 24));
@@ -123,18 +123,19 @@ class LandingPage extends CI_Controller{
     }
   }
 
-  public function invoice()
+  public function invoice($kode_bayar)
   {
     if ($this->session->no_telepon) {
-      $data['transaksi'] = $this->Produk_models->getTransaksi()->result();
+      $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
+      $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
+      $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
       $data['judul'] = 'Invoice | Produk UMKM';
       $this->load->view('layouts/header', $data);
       $this->load->view('landing_pages/invoice',$data);
       $this->load->view('layouts/footer');
     }else {
-      redirect(base_url());
+      redirect('NotFound');
     }
-
   }
 
   public function faq()
@@ -171,8 +172,9 @@ class LandingPage extends CI_Controller{
   public function tunggu_pembayaran()
   {
     $data['judul'] = 'Tunggu Pembayaran | Produk UMKM';
+    $data['transaksi'] = $this->Transaksi_models->getTransaksi()->result();
     $this->load->view('layouts/header',$data);
-    $this->load->view('landing_pages/tunggu_pembayaran');
+    $this->load->view('landing_pages/tunggu_pembayaran',$data);
     $this->load->view('layouts/footer');
   }
 

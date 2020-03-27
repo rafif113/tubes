@@ -1,27 +1,18 @@
-<div class="card text-center">
-  <div class="card-header">
-    Featured
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
-</div>
 
-<div class="card text-center">
-  <div class="card-header">
-    Featured
+
+
+<?php foreach ($transaksi as $t): ?>
+  <div class="card text-center">
+    <div class="card-header">
+      Status
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><?php echo $t->status_transaksi ?></h5>
+      <p class="card-text">Kode Bayar : <?php echo $t->kode_bayar ?></p>
+      <a href="<?php echo base_url('LandingPage/invoice/'.$t->kode_bayar) ?>" class="btn btn-primary">Lihat Detail</a>
+    </div>
+    <div class="card-footer text-muted">
+      Batas Pembayaran <?php echo $t->tanggal_deadline ?>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
-  </div>
-</div>
+<?php endforeach; ?>
