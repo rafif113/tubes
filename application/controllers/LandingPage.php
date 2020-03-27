@@ -178,6 +178,28 @@ class LandingPage extends CI_Controller{
     $this->load->view('layouts/footer');
   }
 
+  public function cetak($kode_bayar)
+  {
+    $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
+    $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
+    $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
+    $this->load->view('landing_pages/cetak_invoice',$data);
+  }
+
+  // public function cetak_invoice($kode_bayar)
+  // {
+  //   // load view yang akan digenerate atau diconvert
+  //   $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
+  //   $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
+  //   $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
+  //   // dapatkan output html
+  //   $this->load->library('pdf');
+  //
+  //   $this->pdf->setPaper('A4', 'potrait');
+  //   $this->pdf->filename = "laporan-petanikode.pdf";
+  //   $this->pdf->load_view('landing_pages/cetak_invoice',$data);
+  // }
+
 
 
 }

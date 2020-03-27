@@ -155,7 +155,7 @@
                                   <li><a href="<?php echo base_url('LandingPage/faq') ?>">Faq</a></li>
                                   <li><a href="<?php echo base_url('LandingPage/shopping_cart') ?>">Keranjang</a></li>
                                   <li><a href="<?php echo base_url('LandingPage/check_out') ?>">Checkout</a></li>
-                                  <li><a href="<?php echo base_url('LandingPage/tunggu_pembayaran') ?>">Tunggu Pembayaran</a></li>
+                                  <li><a href="<?php echo base_url('LandingPage/tunggu_pembayaran') ?>">Daftar Transaksi</a></li>
                               </ul>
                           </li>
 

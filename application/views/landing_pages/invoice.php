@@ -24,7 +24,7 @@
           <div class="success-text">
             <!-- <i class="fa fa-success fa-check-circle" aria-hidden="true"></i> -->
             <h2>Detail Transaksi</h2>
-            <p>Silahkan bayar produk yang telah dipilih</p>
+            <p><?php echo $transaksi['status_transaksi'] ?></p>
             <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
           </div>
         </div>
@@ -103,6 +103,10 @@
               <div class="delivery-sec">
                 <h3>Batas Pembayaran</h3>
                 <h2><?php echo $transaksi['tanggal_deadline'] ?></h2>
+              </div>
+              <div class="delivery-sec">
+                <h3>Cetak Invoice</h3>
+                <a href="<?php echo base_url('LandingPage/cetak/'.$transaksi['kode_bayar']) ?>" class="btn btn-primary rounded" target="_BLANK" type="button" name="button">Cetak Invoice</a>
               </div>
             </div>
           </div>
