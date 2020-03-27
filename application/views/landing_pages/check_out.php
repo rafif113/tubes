@@ -13,7 +13,7 @@
   </div>
 </div>
 <!-- Breadcrumb Section Begin -->
-
+<div class="flash-payment" data-flashdata="<?= $this->session->flashdata('profile') ?>"></div>
 <!-- Shopping Cart Section Begin -->
 <section class="checkout-section spad">
   <div class="container">
@@ -96,7 +96,13 @@
                 </div>
               </div>
               <div class="order-btn">
-                <button type="submit" class="site-btn place-btn">Place Order</button>
+                <?php if ($this->session->no_telepon){ ?>
+                  <a href="<?php echo base_url('LandingPage/proses_check_out') ?>" class="site-btn place-btn">Pesan Sekarang</a>
+                <?php }else {
+                  $this->session->set_flashdata('profile','Lengakpi profile terlebih dahulu');?>
+                  <a href="<?php echo base_url('LandingPage/check_out') ?>" class="site-btn place-btn">Pesan Sekarang</a>
+                <?php } ?>
+
               </div>
             </div>
           </div>

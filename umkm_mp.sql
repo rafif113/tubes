@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Mar 2020 pada 04.25
+-- Waktu pembuatan: 27 Mar 2020 pada 03.06
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -171,20 +171,15 @@ INSERT INTO `tb_testimoni` (`id_testimoni`, `id_user`, `id_produk`, `isi_testimo
 --
 
 CREATE TABLE `tb_transaksi` (
-  `id_transaksi` varchar(255) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
   `id_user` varchar(255) NOT NULL,
   `id_produk` varchar(255) NOT NULL,
   `id_pengiriman` varchar(255) NOT NULL,
-  `tgl_transaksi` date NOT NULL,
-  `nama_pengiriman` varchar(255) NOT NULL,
-  `harga_pengiriman` varchar(255) NOT NULL,
+  `tanggal_transaksi` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tanggal_deadline` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status_transaksi` varchar(255) NOT NULL,
   `kode_bayar` varchar(255) NOT NULL,
-  `nama_produk` varchar(255) NOT NULL,
-  `jenis_produk` varchar(255) NOT NULL,
-  `foto_produk` varchar(255) NOT NULL,
   `jumlah_produk` varchar(255) NOT NULL,
-  `harga_produk` varchar(255) NOT NULL,
   `sub_total` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -192,8 +187,8 @@ CREATE TABLE `tb_transaksi` (
 -- Dumping data untuk tabel `tb_transaksi`
 --
 
-INSERT INTO `tb_transaksi` (`id_transaksi`, `id_user`, `id_produk`, `id_pengiriman`, `tgl_transaksi`, `nama_pengiriman`, `harga_pengiriman`, `status_transaksi`, `kode_bayar`, `nama_produk`, `jenis_produk`, `foto_produk`, `jumlah_produk`, `harga_produk`, `sub_total`) VALUES
-('TRX0001', 'USR0002', 'PRD01', 'KRM0001', '2020-03-18', 'JNT', '20000', 'pengiriman', 'A2UZ8IEJ4K', 'Minyak Sunco', '', '', '1', '', '500000');
+INSERT INTO `tb_transaksi` (`id_transaksi`, `id_user`, `id_produk`, `id_pengiriman`, `tanggal_transaksi`, `tanggal_deadline`, `status_transaksi`, `kode_bayar`, `jumlah_produk`, `sub_total`) VALUES
+(11, 'USR0009', 'PRD02', 'KRM001', '0000-00-00 00:00:00', '2020-03-27 15:44:27', 'Belum dibayar', 'VCo082116097045', '13', '156000');
 
 -- --------------------------------------------------------
 
@@ -243,7 +238,8 @@ INSERT INTO `tb_user` (`id_user`, `username`, `password`, `nama`, `email`, `no_t
 ('USR0003', 'sidamakmur', '202cb962ac59075b964b07152d234b70', 'Rohmadi', 'rohmadi@gmail.com', '', '', '', '', '', '', '', 'pending', 'UMKM', ''),
 ('USR0006', 'ana', '202cb962ac59075b964b07152d234b70', 'Anaa ', 'ana@gmail.com', '', '', '', '', '', '', '', 'pending', 'UMKM', 'WIN_20191227_22_40_55_Pro.jpg'),
 ('USR0007', 'rudi', '202cb962ac59075b964b07152d234b70', 'rudi', 'rudi@dmail.com', '', '', '', '', '', '', '', 'verified', '', ''),
-('USR0009', 'rafif', '$2y$10$RESdH/za/GGW93sg/pPzNuruckVcuCsyP6bq35ED0edSQ8f3qjvOC', 'Rafif Yusuf', 'rafifyusuf@gmail.com', '082116097045', 'Jawa Barat', 'Bandung', 'Bojongsoang', '40288', 'komplek Bojong soang asri 1', '2020-03-22 12:54:05', 'Terverifikasi', 'User', '');
+('USR0009', 'rafif', '$2y$10$RESdH/za/GGW93sg/pPzNuruckVcuCsyP6bq35ED0edSQ8f3qjvOC', 'Rafif Yusuf', 'rafifyusuf@gmail.com', '082116097045', 'Jawa Barat', 'Bandung', 'Bojongsoang', '40288', 'komplek Bojong soang asri 1', '2020-03-22 12:54:05', 'Terverifikasi', 'User', ''),
+('USR0010', 'janisa', '$2y$10$IXkAHSYjTufUNrsBy1u7g.28owWtIfTn3y.bkCtTUYUBgm40Pmgde', '', '', '', '', '', '', '', '', '2020-03-26 10:19:43', 'Belum terverifikasi', 'User', '');
 
 -- --------------------------------------------------------
 
@@ -349,6 +345,12 @@ ALTER TABLE `tb_wishlist`
 --
 ALTER TABLE `tb_artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_transaksi`
+--
+ALTER TABLE `tb_transaksi`
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

@@ -69,7 +69,7 @@
                           <div class="advanced-search">
                               <button type="button" class="category-btn">All Categories</button>
                               <div class="input-group">
-                                  <input type="text" name="keyword" placeholder="Cari Produk UMKM....">
+                                  <input type="text" name="keyword" placeholder="Cari Produk UMKM...." autocomplete="off">
                                   <button type="button"><i class="ti-search"></i></button>
                               </div>
                           </div>
@@ -78,7 +78,7 @@
                       <div class="col-lg-3 text-right col-md-3">
                           <ul class="nav-right">
                               <li class="heart-icon">
-                                  <a href="#">
+                                  <a href="<?php echo base_url('LandingPage/whislist') ?>">
                                       <i class="icon_heart_alt"></i>
                                       <span>0</span>
                                   </a>
@@ -113,8 +113,7 @@
                                           <h5>Rp <?=number_format($this->cart->total())?></h5>
                                       </div>
                                       <div class="select-button">
-                                          <a href="#" class="primary-btn view-card">VIEW CARD</a>
-                                          <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
+                                          <a href="<?php echo base_url('LandingPage/check_out') ?>" class="primary-btn checkout-btn">CHECK OUT</a>
                                       </div>
                                   </div>
                               </li>

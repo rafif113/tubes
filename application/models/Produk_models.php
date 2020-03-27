@@ -56,6 +56,19 @@ class Produk_models extends CI_Model{
         }
   }
 
+  public function id_transaksi()
+  {
+    $transaksi = "TRX";
+    $q = "SELECT MAX(TRIM(REPLACE(id_transaksi,'TRX', ''))) as nama
+          FROM tb_transaksi WHERE id_transaksi LIKE '$transaksi%'";
+    $baris = $this->db->query($q);
+    $akhir = $baris->row()->nama;
+    $akhir++;
+    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
+    $id = "TRX".$id;
+    return $id;
+  }
+
   public function getSearch($keyword = null)
   {
     if ($keyword) {

@@ -61,15 +61,10 @@
           <h4>Profile Anda</h4>
           <?= form_open('user/profile_proses',array('method' =>'POST')) ?>
           <div class="row">
-            <div class="col-lg-6">
-              <label for="fir">Nama Depan<span>*</span></label>
-              <input type="text" name="nam_dep" value="<?php echo $user->nama; ?>" id="fir">
-              <small class="form-text text-danger"><?= form_error('nam_dep'); ?></small>
-            </div>
-            <div class="col-lg-6">
-              <label for="last">Nama Belakang<span>*</span></label>
-              <input type="text" name="nam_bel" id="last">
-              <small class="form-text text-danger"><?= form_error('nam_bel'); ?></small>
+            <div class="col-lg-12">
+              <label for="fir">Nama lengkap<span>*</span></label>
+              <input type="text" name="nama" value="<?php echo $user->nama; ?>" id="fir">
+              <small class="form-text text-danger"><?= form_error('nama'); ?></small>
             </div>
             <div class="col-lg-12">
               <label for="cun">Provinsi<span>*</span></label>

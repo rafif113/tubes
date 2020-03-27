@@ -14,17 +14,16 @@ class User extends CI_Controller{
     $username = $this->session->username;
     $user = $this->User_models->data_user($username)->row();
 
-    $data['judul'] = 'Profile | Produk UMKM';
+    $jdl['judul'] = 'Profile | Produk UMKM';
     $data['user']  = $user;
-    $this->load->view('layouts/header', $data);
+    $this->load->view('layouts/header', $jdl);
     $this->load->view('landing_pages/profile',$data);
     $this->load->view('layouts/footer');
   }
 
   public function profile_proses()
   {
-    $this->form_validation->set_rules('nam_dep','Nama Depan','required');
-    $this->form_validation->set_rules('nam_bel','Nama Belakang','required');
+    $this->form_validation->set_rules('nam','Nama Lengkap','required');
     $this->form_validation->set_rules('provinsi','Provinsi','required');
     $this->form_validation->set_rules('kota','Kota','required');
     $this->form_validation->set_rules('alamat','Alamat','required|min_length[5]');

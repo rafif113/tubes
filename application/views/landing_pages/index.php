@@ -79,8 +79,8 @@
                           <div class="product-item">
                               <div class="pi-pic">
                                   <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
-                                  <div class="icon">
-                                      <i class="icon_heart_alt"></i>
+                                  <div class="icon active">
+                                      <i class="icon_heart_alt tombol-wishlist"></i>
                                   </div>
                                   <ul>
                                       <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">

@@ -1,6 +1,7 @@
 const flashData  = $('.flash-data').data('flashdata');
 const flashData1 = $('.login-first').data('flashdata');
 const flashData2 = $('.flash-login').data('flashdata');
+const flashData3 = $('.flash-payment').data('flashdata');
 
 
 if (flashData) {
@@ -27,6 +28,15 @@ if (flashData2) {
   });
 }
 
+if (flashData3) {
+  Swal.fire({
+  icon: 'warning',
+  title: 'Oops...',
+  text: flashData3,
+  footer: '<a href="http://localhost/tubes/User/profile">Halaman Profile</a>'
+})
+}
+
 $('.tombol-hapus').on('click', function (e){
 
   e.preventDefault();
@@ -50,7 +60,6 @@ $('.tombol-hapus').on('click', function (e){
 
 
 $('.tombol-hapus-foto').on('click', function (e){
-
   e.preventDefault();
   const href = $(this).attr('href');
 
@@ -67,11 +76,9 @@ $('.tombol-hapus-foto').on('click', function (e){
     document.location.href = href;
   }
 });
-
 });
 
 $('.tombol-logout').on('click', function (e){
-
   e.preventDefault();
   const href = $(this).attr('href');
 
@@ -88,5 +95,24 @@ $('.tombol-logout').on('click', function (e){
     document.location.href = href;
   }
 });
+});
 
+
+$('.tombol-wishlist').on('click', function (e){
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Produk berhasil ditambahkan'
+})
 });
