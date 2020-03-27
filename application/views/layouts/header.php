@@ -145,14 +145,20 @@
           </div>
 
           <div class="nav-item">
-              <div class="container offset-lg-3">
+              <div class="container offset-lg-4">
                   <nav class="nav-menu mobile-menu">
                       <ul>
                           <li><a href="<?php echo base_url() ?>">Beranda</a></li>
                           <li><a href="<?php echo base_url('LandingPage/shop') ?>">Produk</a></li>
-                          <li><a href="<?php echo base_url('LandingPage/shopping_cart') ?>">Keranjang</a></li>
-                          <li><a href="<?php echo base_url('LandingPage/check_out') ?>">Checkout</a></li>
-                          <li><a href="<?php echo base_url('LandingPage/faq') ?>">Faq</a></li>
+                          <li><a href="#">Halaman Lainnya</a>
+                              <ul class="dropdown">
+                                  <li><a href="<?php echo base_url('LandingPage/faq') ?>">Faq</a></li>
+                                  <li><a href="<?php echo base_url('LandingPage/shopping_cart') ?>">Keranjang</a></li>
+                                  <li><a href="<?php echo base_url('LandingPage/check_out') ?>">Checkout</a></li>
+                                  <li><a href="<?php echo base_url('LandingPage/tunggu_pembayaran') ?>">Tunggu Pembayaran</a></li>
+                              </ul>
+                          </li>
+
                       </ul>
                   </nav>
                   <div id="mobile-menu-wrap"></div>

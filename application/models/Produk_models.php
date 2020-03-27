@@ -69,13 +69,27 @@ class Produk_models extends CI_Model{
     return $id;
   }
 
-  public function getSearch($keyword = null)
+  public function getTransaksi()
   {
-    if ($keyword) {
-      $this->db->like('nama_produk', $keyword);
-      $this->db->or_like('jenis_produk', $keyword);
-    }
-    return $this->db->get('tb_produk');
+    $this->db->select('tb_transaksi.*,tb_produk.*,tb_pengiriman.*');
+    $this->db->from('tb_transaksi');
+    $this->db->join('tb_user', 'tb_user.id_user = tb_transaksi.id_user');
+    $this->db->join('tb_produk', 'tb_produk.id_produk = tb_transaksi.id_produk');
+    $this->db->join('tb_pengiriman', 'tb_pengiriman.id_pengiriman = tb_transaksi.id_pengiriman');
+    $this->db->where('id_transaksi',11);
+    $query = $this->db->get();
+    return $query;
   }
+
+
+
+  // public function getSearch($keyword = null)
+  // {
+  //   if ($keyword) {
+  //     $this->db->like('nama_produk', $keyword);
+  //     $this->db->or_like('jenis_produk', $keyword);
+  //   }
+  //   return $this->db->get('tb_produk');
+  // }
 
 }

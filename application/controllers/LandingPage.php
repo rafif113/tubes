@@ -126,9 +126,10 @@ class LandingPage extends CI_Controller{
   public function invoice()
   {
     if ($this->session->no_telepon) {
+      $data['transaksi'] = $this->Produk_models->getTransaksi()->result();
       $data['judul'] = 'Invoice | Produk UMKM';
       $this->load->view('layouts/header', $data);
-      $this->load->view('landing_pages/invoice');
+      $this->load->view('landing_pages/invoice',$data);
       $this->load->view('layouts/footer');
     }else {
       redirect(base_url());
@@ -165,6 +166,14 @@ class LandingPage extends CI_Controller{
     }else {
       redirect(base_url('Auth/login'));
     }
+  }
+
+  public function tunggu_pembayaran()
+  {
+    $data['judul'] = 'Tunggu Pembayaran | Produk UMKM';
+    $this->load->view('layouts/header',$data);
+    $this->load->view('landing_pages/tunggu_pembayaran');
+    $this->load->view('layouts/footer');
   }
 
 
