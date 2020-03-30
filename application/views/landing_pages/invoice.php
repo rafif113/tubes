@@ -21,12 +21,19 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="success-text">
-            <!-- <i class="fa fa-success fa-check-circle" aria-hidden="true"></i> -->
-            <h2>Detail Transaksi</h2>
-            <p><?php echo $transaksi['status_transaksi'] ?></p>
-            <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
-          </div>
+          <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>
+            <div class="success-text">
+              <h2>Detail Transaksi</h2>
+              <p><?php echo $transaksi['status_transaksi'] ?></p>
+              <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
+            </div>
+          <?php }else { ?>
+            <div class="success-text"><i class="fa fa-success fa-check-circle" aria-hidden="true"></i>
+              <h2>Detail Transaksi</h2>
+              <p><?php echo $transaksi['status_transaksi'] ?></p>
+              <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
+            </div>
+          <?php } ?>
         </div>
       </div>
     </div>
@@ -100,14 +107,17 @@
               <p>Transfer melalui rekening yang tersedia</p>
             </div>
             <div class="col-md-12">
-              <div class="delivery-sec">
-                <h3>Batas Pembayaran</h3>
-                <h2><?php echo $transaksi['tanggal_deadline'] ?></h2>
-              </div>
-              <div class="delivery-sec">
-                <h3>Cetak Invoice</h3>
-                <a href="<?php echo base_url('LandingPage/cetak/'.$transaksi['kode_bayar']) ?>" class="btn btn-primary rounded" target="_BLANK" type="button" name="button">Cetak Invoice</a>
-              </div>
+              <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>
+                <div class="delivery-sec">
+                  <h3>Batas Pembayaran</h3>
+                  <h2><?php echo $transaksi['tanggal_deadline'] ?></h2>
+                </div>
+              <?php }else { ?>
+                <div class="delivery-sec">
+                  <h3>Cetak Invoice</h3>
+                  <a href="<?php echo base_url('LandingPage/cetak/'.$transaksi['kode_bayar']) ?>" class="btn rounded" style="background-color:#e7ab3c; color:#fff;" target="_BLANK" >Cetak Invoice</a>
+                </div>
+              <?php } ?>
             </div>
           </div>
         </div>
