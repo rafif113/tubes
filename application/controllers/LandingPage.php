@@ -160,7 +160,8 @@ class LandingPage extends CI_Controller{
   public function wishlist()
   {
     if ($this->session->username) {
-      $data['judul'] = 'Shopping Wishlist | Produk UMKM';
+      $data['judul']    = 'Shopping Wishlist | Produk UMKM';
+      $data['wishlist'] = $this->Produk_models->getWishlist()->result();
       $this->load->view('layouts/header', $data);
       $this->load->view('landing_pages/wishlist', $data);
       $this->load->view('layouts/footer');

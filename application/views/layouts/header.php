@@ -30,6 +30,12 @@
           <div class="loader"></div>
       </div>
 
+      <?php
+    $id = $this->session->id_user;
+    $this->db->like('id_user' ,$id);
+    $this->db->from('tb_wishlist');
+    $data['total_rows'] = $this->db->count_all_results(); ?>
+
       <!-- Header Section Begin -->
       <header class="header-section">
           <div class="header-top">
@@ -78,9 +84,9 @@
                       <div class="col-lg-3 text-right col-md-3">
                           <ul class="nav-right">
                               <li class="heart-icon">
-                                  <a href="<?php echo base_url('LandingPage/whislist') ?>">
+                                  <a href="<?php echo base_url('LandingPage/wishlist') ?>">
                                       <i class="icon_heart_alt"></i>
-                                      <span>0</span>
+                                      <span><?php echo $data['total_rows'] ?></span>
                                   </a>
                               </li>
                               <li class="cart-icon">

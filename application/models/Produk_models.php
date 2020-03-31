@@ -56,6 +56,17 @@ class Produk_models extends CI_Model{
         }
   }
 
+  public function getWishlist()
+  {
+    $id = $this->session->id_user;
+    $this->db->select('tb_wishlist.*,tb_produk.*');
+    $this->db->from('tb_wishlist');
+    $this->db->join('tb_produk', 'tb_produk.id_produk = tb_wishlist.id_produk');
+    $this->db->where('tb_wishlist.id_user',$id);
+    $query = $this->db->get();
+    return $query;
+  }
+
 
 
 
