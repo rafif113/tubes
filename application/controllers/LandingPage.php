@@ -107,7 +107,7 @@ class LandingPage extends CI_Controller{
       $this->Transaksi_models->transaksi($data);
     }
     $this->cart->destroy();
-    redirect('LandingPage/invoice');
+    redirect('LandingPage/invoice/'.$kode_bayar);
   }
 
   public function shopping_cart()
