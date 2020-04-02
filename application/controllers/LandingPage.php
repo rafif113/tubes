@@ -170,21 +170,54 @@ class LandingPage extends CI_Controller{
     }
   }
 
+  public function tambah_wishlist($id)
+  {
+    $id_user     = $this->session->id_user;
+    $id_produk   = $id;
+    $id_wishlist = $this->Produk_models->idWishlist();
+
+    $data = array(
+        'id_wishlist' => $id_wishlist,
+        'id_user'     => $id_user,
+        'id_produk'   => $id_produk
+    );
+    $result = $this->Produk_models->tambahWishlist($data);
+    if ($result) {
+      redirect(base_url('LandingPage/wishlist'));
+    }
+  }
+
+  public function hapus_wishlist($id)
+  {
+    $this->Produk_models->hapusWishlist($id);
+    redirect('LandingPage/wishlist');
+  }
+
   public function tunggu_pembayaran()
   {
-    $data['judul'] = 'Tunggu Pembayaran | Produk UMKM';
-    $data['transaksi'] = $this->Transaksi_models->getTransaksi()->result();
-    $this->load->view('layouts/header',$data);
-    $this->load->view('landing_pages/tunggu_pembayaran',$data);
-    $this->load->view('layouts/footer');
+    if ($this->session->no_telepon) {
+      $data['judul'] = 'Tunggu Pembayaran | Produk UMKM';
+      $data['transaksi'] = $this->Transaksi_models->getTransaksi()->result();
+      $this->load->view('layouts/header',$data);
+      $this->load->view('landing_pages/tunggu_pembayaran',$data);
+      $this->load->view('layouts/footer');
+    }else {
+      redirect(base_url());
+    }
+
   }
 
   public function cetak($kode_bayar)
   {
-    $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
-    $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
-    $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
-    $this->load->view('landing_pages/cetak_invoice',$data);
+    if ($this->session->no_telepon) {
+      $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
+      $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
+      $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
+      $this->load->view('landing_pages/cetak_invoice',$data);
+    }else {
+      redirect(base_url());
+    }
+
   }
 
   // public function cetak_invoice($kode_bayar)

@@ -79,9 +79,6 @@
                           <div class="product-item">
                               <div class="pi-pic">
                                   <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
-                                  <div class="icon">
-                                    <a><i class="icon_heart_alt tombol-wishlist" onclick="window.location.href=window.location.href;"></i></a>
-                                  </div>
                                   <ul>
                                       <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">
                                         <i class="icon_bag_alt"></i></a></li>
@@ -160,9 +157,6 @@
                         <div class="product-item">
                             <div class="pi-pic">
                                 <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
                                 <ul>
                                   <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">
                                     <i class="icon_bag_alt"></i></a></li>

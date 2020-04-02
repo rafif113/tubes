@@ -67,6 +67,31 @@ class Produk_models extends CI_Model{
     return $query;
   }
 
+  public function tambahWishlist($data)
+  {
+    $query = $this->db->insert('tb_wishlist', $data);
+    return $query;
+  }
+
+  public function hapusWishlist($id)
+  {
+    $this->db->where('id_wishlist', $id);
+    $this->db->delete('tb_wishlist');
+  }
+
+  public function idWishlist()
+  {
+    $wishlist = "WHS";
+    $q = "SELECT MAX(TRIM(REPLACE(id_wishlist,'WHS', ''))) as nama
+          FROM tb_wishlist WHERE id_wishlist LIKE '$wishlist%'";
+    $baris = $this->db->query($q);
+    $akhir = $baris->row()->nama;
+    $akhir++;
+    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
+    $id = "WHS".$id;
+    return $id;
+  }
+
 
 
 

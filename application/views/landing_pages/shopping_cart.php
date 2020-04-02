@@ -57,7 +57,7 @@
                                 </td>
                                 <td class="total-price">Rp <?php echo number_format($kr['subtotal']) ?></td>
                                 <td class="cart-buttons"><button class="primary-btn up-cart">Update</button></td>
-                                <td class="close-td"><a href="<?php echo base_url('Barang/hapus_cart/'.$kr['rowid']) ?>">
+                                <td class="close-td"><a style="color: #343a40;" href="<?php echo base_url('Barang/hapus_cart/'.$kr['rowid']) ?>">
                                   <i class="ti-close"></i></a></td>
                             </tr>
                             <?php echo form_close() ?>
@@ -75,11 +75,6 @@
                     </div>
                   <?php endif; ?>
                     <div class="col-lg-4 offset-lg-4">
-                      <?php if (empty($cart)): ?>
-                        <div class="proceed-checkout">
-                            <a href="<?php echo base_url('LandingPage/shop') ?>" class="proceed-btn">Tambah Barang </a>
-                        </div>
-                      <?php endif; ?>
                       <?php if ($cart): ?>
                         <div class="proceed-checkout">
                             <ul>

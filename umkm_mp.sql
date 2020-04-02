@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Mar 2020 pada 03.06
+-- Waktu pembuatan: 02 Apr 2020 pada 12.07
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -188,7 +188,11 @@ CREATE TABLE `tb_transaksi` (
 --
 
 INSERT INTO `tb_transaksi` (`id_transaksi`, `id_user`, `id_produk`, `id_pengiriman`, `tanggal_transaksi`, `tanggal_deadline`, `status_transaksi`, `kode_bayar`, `jumlah_produk`, `sub_total`) VALUES
-(11, 'USR0009', 'PRD02', 'KRM001', '0000-00-00 00:00:00', '2020-03-27 15:44:27', 'Belum dibayar', 'VCo082116097045', '13', '156000');
+(11, 'USR0009', 'PRD02', 'KRM001', '2020-03-27 15:41:15', '2020-03-27 15:44:27', 'Sudah dibayar', 'VCo082116097045', '13', '156000'),
+(12, 'USR0009', 'PRD01', 'KRM001', '0000-00-00 00:00:00', '2020-03-28 03:13:28', 'Belum dibayar', 'EVM082116097045', '1', '60000'),
+(13, 'USR0009', 'PRD01', 'KRM001', '0000-00-00 00:00:00', '2020-03-28 08:26:41', 'Belum dibayar', 'Lu1082116097045', '1', '60000'),
+(14, 'USR0009', 'PRD05', 'KRM001', '0000-00-00 00:00:00', '2020-03-28 08:26:41', 'Belum dibayar', 'Lu1082116097045', '2', '24000'),
+(19, 'USR0009', 'PRD02', 'KRM001', '0000-00-00 00:00:00', '2020-04-02 15:55:56', 'Belum dibayar', 'kzo082116097045', '1', '12000');
 
 -- --------------------------------------------------------
 
@@ -250,18 +254,17 @@ INSERT INTO `tb_user` (`id_user`, `username`, `password`, `nama`, `email`, `no_t
 CREATE TABLE `tb_wishlist` (
   `id_wishlist` varchar(255) NOT NULL,
   `id_user` varchar(255) NOT NULL,
-  `id_produk` varchar(255) NOT NULL,
-  `jenis_produk` varchar(255) NOT NULL,
-  `harga_produk` int(11) NOT NULL,
-  `foto_produk` varchar(255) NOT NULL
+  `id_produk` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_wishlist`
 --
 
-INSERT INTO `tb_wishlist` (`id_wishlist`, `id_user`, `id_produk`, `jenis_produk`, `harga_produk`, `foto_produk`) VALUES
-('WSL001', 'USR0001', 'PRD01', 'Sembako', 50000, '');
+INSERT INTO `tb_wishlist` (`id_wishlist`, `id_user`, `id_produk`) VALUES
+('WSL001', 'USR0009', 'PRD01'),
+('WHS0001', 'USR0009', 'PRD03'),
+('WHS0002', 'USR0009', 'PRD08');
 
 --
 -- Indexes for dumped tables
@@ -350,7 +353,7 @@ ALTER TABLE `tb_artikel`
 -- AUTO_INCREMENT untuk tabel `tb_transaksi`
 --
 ALTER TABLE `tb_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

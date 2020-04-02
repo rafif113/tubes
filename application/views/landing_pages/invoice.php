@@ -110,7 +110,7 @@
               <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>
                 <div class="delivery-sec">
                   <h3>Batas Pembayaran</h3>
-                  <h2><?php echo $transaksi['tanggal_deadline'] ?></h2>
+                  <h2><?php echo date('d F Y H:i:s', strtotime($t->tanggal_deadline )); ?></h2>
                 </div>
               <?php }else { ?>
                 <div class="delivery-sec">

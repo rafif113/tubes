@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="cart-table">
-                    <table border="4">
+                    <table>
                         <thead>
                             <tr>
                                 <th>Image</th>
@@ -39,8 +39,8 @@
                                 </td>
                                 <td class="p-price first-row">Rp <?php echo number_format($w->harga_produk) ?></td>
                                 <td class="close-td first-row">
-                                  <a style="color: #343a40;" href=""><i class="ti-close mr-3"></i></a>
-                                  <a style="color: #343a40;" href=""><i class="ti-shopping-cart"></i></a>
+                                  <a style="color: #343a40;" href="<?php echo base_url('LandingPage/hapus_wishlist/'.$w->id_wishlist) ?>"><i class="ti-close mr-3"></i></a>
+                                  <a style="color: #343a40;" href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$w->id_produk) ?>"><i class="ti-shopping-cart"></i></a>
                                 </td>
                             </tr>
                           <?php endforeach; ?>
