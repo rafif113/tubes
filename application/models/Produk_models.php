@@ -5,7 +5,8 @@ class Produk_models extends CI_Model{
 
   public function getSayur()
   {
-      $query = $this->db->get_where('tb_produk',['jenis_produk' => 'Sayuran']);
+      $procedure = "CALL view_produk_sayur('Sayuran')";
+      $query     = $this->db->query($procedure);
       return $query;
   }
 
@@ -23,7 +24,8 @@ class Produk_models extends CI_Model{
 
   public function getAllProduk()
   {
-      $query = $this->db->get('tb_produk');
+      $procedure = 'CALL view_produk()';
+      $query     = $this->db->query($procedure);
       return $query;
   }
 
@@ -50,7 +52,7 @@ class Produk_models extends CI_Model{
   {
       $query = $this->db->get('tb_produk');
         if ($query->num_rows() > 0) {
-          return $query->num_rows();
+          return $query;
         }else {
           return 0;
         }

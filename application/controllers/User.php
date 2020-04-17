@@ -23,7 +23,7 @@ class User extends CI_Controller{
 
   public function profile_proses()
   {
-    $this->form_validation->set_rules('nam','Nama Lengkap','required');
+    $this->form_validation->set_rules('nama','Nama Lengkap','required');
     $this->form_validation->set_rules('provinsi','Provinsi','required');
     $this->form_validation->set_rules('kota','Kota','required');
     $this->form_validation->set_rules('alamat','Alamat','required|min_length[5]');
@@ -33,7 +33,7 @@ class User extends CI_Controller{
     $this->form_validation->set_rules('email','Email','required|valid_email');
 
     if ($this->form_validation->run() == FALSE) {
-      $this->profile();
+      echo "as";
     }else {
       $this->User_models->update();
       $this->session->set_flashdata('flash','Diubah');

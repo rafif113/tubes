@@ -13,8 +13,6 @@
 </head>
 
 <body>
-
-
   <!-- header start -->
   <!-- thank-you section start -->
   <section class="section-b-space light-layout">
@@ -23,7 +21,7 @@
         <div class="col-md-12">
           <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>
             <div class="success-text">
-              <h2>Detail Transaksi</h2>
+              <h2>Detail Transaksi </h2>
               <p><?php echo $transaksi['status_transaksi'] ?></p>
               <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
             </div>
@@ -49,7 +47,7 @@
           <div class="product-order">
             <h3>your order details</h3>
 
-          <?php foreach ($transaksi2 as $t): ?>
+          <?php foreach ($detail as $t): ?>
             <div class="row product-order-detail">
               <div class="col-3"><img src="<?php echo base_url('images/produk/'.$t->foto_produk) ?>" alt="" class="img-fluid  lazyload"></div>
               <div class="col-3 order_detail">
@@ -67,7 +65,7 @@
               <div class="col-3 order_detail">
                 <div>
                   <h4>harga</h4>
-                  <h5>Rp <?php echo number_format($t->sub_total) ?></h5>
+                  <h5>Rp <?php echo number_format($t->subtotal) ?></h5>
                 </div>
               </div>
             </div>
@@ -75,12 +73,12 @@
 
             <div class="total-sec">
               <ul>
-                <li>subTotal <span>Rp <?php echo number_format($transaksi1['sub_total'])?></span></li>
-                <li>Pengiriman <span>Rp <?php echo number_format($transaksi['harga_pengiriman']) ?></span></li>
+                <li>subTotal <span>Rp <?php echo number_format($sumharga['total_harga_produk'])?></span></li>
+                <li>Pengiriman <span>Rp <?php echo number_format($transaksi['total'] - $sumharga['total_harga_produk']) ?></span></li>
               </ul>
             </div>
             <div class="final-total">
-              <h3>Total <span>Rp <?php echo number_format($transaksi1['sub_total'] + $transaksi['harga_pengiriman'])?></span></h3>
+              <h3>Total <span>Rp <?php echo number_format($transaksi['total'])?></span></h3>
             </div>
           </div>
         </div>
@@ -90,16 +88,16 @@
               <h4>Ringkasan</h4>
               <ul class="order-detail">
                 <li>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></li>
-                <li>Order Total: Rp <?php echo number_format($transaksi1['sub_total'] + $transaksi['harga_pengiriman'])?></li>
+                <li>Order Total: Rp <?php echo number_format($transaksi['total'])?></li>
               </ul>
             </div>
             <div class="col-sm-6">
               <h4>Alamat Pengiriman</h4>
               <ul class="order-detail">
-                <li><?php echo $transaksi['alamat'] ?></li>
-                <li><?php echo $transaksi['kecamatan'] ?> , <?php echo $transaksi['kota'] ?></li>
-                <li><?php echo $transaksi['provinsi'] ?></li>
-                <li>No Telpon. <?php echo $transaksi['no_telepon'] ?></li>
+                <li><?php echo $this->session->alamat ?></li>
+                <li><?php echo $this->session->kecamatan ?> , <?php echo $this->session->kota ?></li>
+                <li><?php echo $this->session->provinsi ?></li>
+                <li>No Telpon. <?php echo $this->session->no_telepon ?></li>
               </ul>
             </div>
             <div class="col-sm-12 payment-mode">

@@ -129,8 +129,8 @@
           <table align="left" border="0" cellpadding="0" cellspacing="0" style="text-align: left;" width="100%">
             <tr>
               <td>
-                <p style="font-size: 14px;"><b><?php echo $transaksi['nama'] ?>,</b></p>
-                <p style="font-size: 14px;">Transaksi anda telah sukses dan sedang diproses menuju alamat anda.</p>
+                <p style="font-size: 14px;"><b><?php echo $this->session->nama ?>,</b></p>
+                <p style="font-size: 14px;">Transaksi anda telah sukses mohon cetak bukti pembayaran ini.</p>
                 <p style="font-size: 14px;">Kode Transaksi : <?php echo $transaksi['kode_bayar'] ?>,</p>
               </td>
             </tr>
@@ -143,8 +143,8 @@
                   <h5 style="font-size: 16px; font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">
                     Alamat Pengiriman</h5>
                   <p style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">
-                    <?php echo $transaksi['alamat'] ?>,<br> <?php echo $transaksi['kecamatan'] ?>
-                    <?php echo $transaksi['kota'] ?> <br><?php echo $transaksi['provinsi'] ?><br><?php echo $transaksi['no_telepon'] ?></p>
+                    <?php echo $this->session->alamat ?>,<br> <?php echo $this->session->kecamatan ?>
+                    <?php echo $this->session->kota ?> <br><?php echo $this->session->provinsi ?><br><?php echo $this->session->no_telepon ?></p>
                 </td>
                 <td><img src="<?php echo base_url() ?>images/space.jpg" alt=" " height="25" width="30">
                 </td>
@@ -152,8 +152,8 @@
                   <h5 style="font-size: 16px;font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">
                     Alamat Penagihan</h5>
                   <p style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">
-                      <?php echo $transaksi['alamat'] ?>,<br> <?php echo $transaksi['kecamatan'] ?>
-                      <?php echo $transaksi['kota'] ?> <br><?php echo $transaksi['provinsi'] ?><br><?php echo $transaksi['no_telepon'] ?></p>
+                      <?php echo $this->session->alamat ?>,<br> <?php echo $this->session->kecamatan ?>
+                      <?php echo $this->session->kota ?> <br><?php echo $this->session->provinsi ?><br><?php echo $this->session->no_telepon ?></p>
                 </td>
               </tr>
             </tbody>
@@ -178,7 +178,7 @@
                 <h5 style="font-size: 14px; color:#444;margin-top: 10px;">QTY : <span><?php echo $t->jumlah_produk ?></span></h5>
               </td>
               <td valign="top" style="padding-left: 15px;">
-                <h5 style="font-size: 14px; color:#444;margin-top:15px"><b>Rp <?php echo number_format($t->sub_total) ?></b></h5>
+                <h5 style="font-size: 14px; color:#444;margin-top:15px"><b>Rp <?php echo number_format($t->subtotal) ?></b></h5>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -188,14 +188,14 @@
                 <p style="font-size: 14px;">Subtotal : </p>
               </td>
               <td class="m-t-5" colspan="2" align="right">
-                <b style>Rp <?php echo number_format($transaksi1['sub_total'])?></b>
+                <b style>Rp <?php echo number_format($transaksi1['total_harga_produk'])?></b>
               </td>
             <tr class="pad-left-right-space">
               <td colspan="2" align="left">
                 <p style="font-size: 14px;">Harga Pengiriman :</p>
               </td>
               <td colspan="2" align="right">
-                <b>Rp <?php echo number_format($transaksi['harga_pengiriman']) ?></b>
+                <b>Rp <?php echo number_format($transaksi['total'] - $transaksi1['total_harga_produk']) ?></b>
               </td>
             </tr>
             <tr class="pad-left-right-space ">
@@ -203,7 +203,7 @@
                 <p style="font-size: 14px;">Total :</p>
               </td>
               <td class="m-b-5" colspan="2" align="right">
-                <b>Rp <?php echo number_format($transaksi1['sub_total'] + $transaksi['harga_pengiriman'])?></b>
+                <b>Rp <?php echo number_format($transaksi['total'])?></b>
               </td>
             </tr>
 

@@ -44,7 +44,7 @@ class LandingPage extends CI_Controller{
   {
     $data['kategori']= $this->Produk_models->getKategori()->result();
     $data['produk']= $this->Produk_models->getAllProduk()->result();
-    $data['jumlah']= $this->Produk_models->getJumlahData();
+    $data['jumlah']= $this->Produk_models->getJumlahData()->num_rows();
 
     $data['judul']   = 'Shop | Produk UMKM';
     $this->load->view('layouts/header', $data);
@@ -86,26 +86,35 @@ class LandingPage extends CI_Controller{
     $tanggal_deadline = date('Y-m-d H:i:s', time() + (60 * 60 * 24));
     $kode_acak        = random_string('alnum',3);
     $kode_bayar       = $kode_acak . $this->session->no_telepon;
-    // $sub_total    = $this->cart->total() + $id_pengiriman->harga_pengiriman;
+    $total            = $this->cart->total() + $id_pengiriman->harga_pengiriman;
     // var_dump($id_pengiriman->id_pengiriman);
 
-    foreach ($cart as $cart => $produk) {
-      $id_produk = $this->Produk_models->getProdukRow($produk['id'])->row();
-      $data = array(
-          'id_transaksi'     => '',
+    $data_transaksi = array(
+          'id_transaksi'     => $id_transaksi,
           'id_user'          => $id_user,
-          'id_produk'        => $id_produk->id_produk,
           'id_pengiriman'    => $id_pengiriman->id_pengiriman,
           'tanggal_deadline' => $tanggal_deadline,
           'tanggal_transaksi'=> '',
-          'status_transaksi' => 'Belum dibayar',
+          'status_transaksi' => 'Dikirim',
           'kode_bayar'       => $kode_bayar,
-          'jumlah_produk'    => $produk['qty'],
-          'sub_total'        => $produk['subtotal']
+          'total'            => $total
       );
-      // var_dump($data);
-      $this->Transaksi_models->transaksi($data);
+    $this->Transaksi_models->transaksi($data_transaksi);
+    // var_dump($data_transaksi);
+
+
+    foreach ($cart as $cart => $produk) {
+      $id_produk = $this->Produk_models->getProdukRow($produk['id'])->row();
+      $data_detail = array(
+          'id_transaksi'     => $id_transaksi,
+          'id_produk'        => $id_produk->id_produk,
+          'jumlah_produk'    => $produk['qty'],
+          'subtotal'         => $produk['subtotal']
+      );
+      // var_dump($data_detail);
+      $this->Transaksi_models->detailTransaksi($data_detail);
     }
+    redirect('LandingPage/checkout');
     $this->cart->destroy();
     redirect('LandingPage/invoice/'.$kode_bayar);
   }
@@ -126,15 +135,28 @@ class LandingPage extends CI_Controller{
   public function invoice($kode_bayar)
   {
     if ($this->session->no_telepon) {
+      $data['judul']      = 'Invoice | Produk UMKM';
+      $data['detail']     = $this->Transaksi_models->getDetailTransaksi($kode_bayar)->result();
+      $data['sumharga']   = $this->Transaksi_models->getSumHarga($kode_bayar)->row_array();
       $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
-      $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
-      $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
-      $data['judul'] = 'Invoice | Produk UMKM';
+
       $this->load->view('layouts/header', $data);
       $this->load->view('landing_pages/invoice',$data);
       $this->load->view('layouts/footer');
     }else {
       redirect('NotFound');
+    }
+  }
+
+  public function cetak($kode_bayar)
+  {
+    if ($this->session->no_telepon) {
+      $data['transaksi2'] = $this->Transaksi_models->getDetailTransaksi($kode_bayar)->result();
+      $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
+      $data['transaksi1'] = $this->Transaksi_models->getSumHarga($kode_bayar)->row_array();
+      $this->load->view('landing_pages/cetak_invoice',$data);
+    }else {
+      redirect(base_url());
     }
   }
 
@@ -207,18 +229,7 @@ class LandingPage extends CI_Controller{
 
   }
 
-  public function cetak($kode_bayar)
-  {
-    if ($this->session->no_telepon) {
-      $data['transaksi']  = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->row_array();
-      $data['transaksi1'] = $this->Transaksi_models->totalHarga($kode_bayar)->row_array();
-      $data['transaksi2'] = $this->Transaksi_models->getTransaksiSingle($kode_bayar)->result();
-      $this->load->view('landing_pages/cetak_invoice',$data);
-    }else {
-      redirect(base_url());
-    }
 
-  }
 
   // public function cetak_invoice($kode_bayar)
   // {

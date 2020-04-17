@@ -5,13 +5,19 @@ class Transaksi_models extends CI_Model{
 
   public function getPengiriman()
   {
-    $query = $this->db->get_where('tb_pengiriman',['id_pengiriman' => 'KRM001']);
+    $query = $this->db->get_where('tb_pengiriman',['id_pengiriman' => 'KRM0001']);
     return $query;
   }
 
-  public function transaksi($data)
+  public function transaksi($data_transaksi)
   {
-    $query = $this->db->insert('tb_transaksi', $data);
+    $query = $this->db->insert('tb_transaksi', $data_transaksi);
+    return $query;
+  }
+
+  public function detailTransaksi($data_detail)
+  {
+    $query = $this->db->insert('tb_detailtransaksi', $data_detail);
     return $query;
   }
 
@@ -30,34 +36,36 @@ class Transaksi_models extends CI_Model{
 
   public function getTransaksi()
   {
-    $id_user = $this->session->id_user;
-    $this->db->distinct();
-    $this->db->select('kode_bayar,status_transaksi,tanggal_deadline');
-    $this->db->where('id_user', $id_user);
-    $query = $this->db->get('tb_transaksi');
+    $id_user   = $this->session->id_user;
+    $procedure = "CALL view_transaksi_user('$id_user')";
+    $query     = $this->db->query($procedure);
     return $query;
   }
 
   public function getTransaksiSingle($kode_bayar)
   {
-    $this->db->select('tb_transaksi.*,tb_produk.*,tb_pengiriman.*,tb_user.*');
-    $this->db->from('tb_transaksi');
-    $this->db->join('tb_user', 'tb_user.id_user = tb_transaksi.id_user');
-    $this->db->join('tb_produk', 'tb_produk.id_produk = tb_transaksi.id_produk');
-    $this->db->join('tb_pengiriman', 'tb_pengiriman.id_pengiriman = tb_transaksi.id_pengiriman');
-    $this->db->where('tb_transaksi.kode_bayar',$kode_bayar);
-    $query = $this->db->get();
+    $procedure = "CALL view_single_transaksi('$kode_bayar')";
+    $query     = $this->db->query($procedure);
     return $query;
   }
 
-  public function totalHarga($kode_bayar)
+  public function getDetailTransaksi($kode_bayar)
   {
-    $this->db->select_sum('sub_total');
-    // $this->db->from('tb_transaksi');
-    // $this->db->join('tb_pengiriman', 'tb_pengiriman.id_pengiriman = tb_transaksi.id_pengiriman');
-    // $this->db->where('tb_transaksi.kode_bayar',$kode_bayar);
-    $query = $this->db->get_where('tb_transaksi',['kode_bayar' => $kode_bayar]);
+    $procedure = "CALL view_detail_transaksi('$kode_bayar')";
+    $query     = $this->db->query($procedure);
     return $query;
   }
 
+  public function getSumHarga($kode_bayar)
+  {
+    // $this->db->select_sum('sub_total');
+    // // $this->db->from('tb_transaksi');
+    // // $this->db->join('tb_pengiriman', 'tb_pengiriman.id_pengiriman = tb_transaksi.id_pengiriman');
+    // // $this->db->where('tb_transaksi.kode_bayar',$kode_bayar);
+    // $query = $this->db->get_where('tb_transaksi',['kode_bayar' => $kode_bayar]);
+    // return $query;
+    $procedure = "CALL view_total_harga_produk('$kode_bayar')";
+    $query     = $this->db->query($procedure);
+    return $query;
+  }
 }

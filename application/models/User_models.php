@@ -31,6 +31,7 @@ class User_models extends CI_Model{
           "no_telepon" => $no_telp,
           "status"     => "Terverifikasi"
     ];
+    var_dump($data);
     $this->db->where('id_user',$id_user);
     $this->db->update('tb_user',$data);
   }
