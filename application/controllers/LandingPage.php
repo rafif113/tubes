@@ -57,7 +57,7 @@ class LandingPage extends CI_Controller{
     if ($this->cart->contents()) {
       if ($this->session->username) {
         $username = $this->session->username;
-        $user     = $this->User_models->data_user($username)->row();
+        $user     = $this->User_models->getUser($username)->row();
 
         $data['pengiriman'] = $this->Transaksi_models->getPengiriman()->row();
         $data['cart']  = $this->cart->contents();
@@ -114,7 +114,6 @@ class LandingPage extends CI_Controller{
       // var_dump($data_detail);
       $this->Transaksi_models->detailTransaksi($data_detail);
     }
-    redirect('LandingPage/checkout');
     $this->cart->destroy();
     redirect('LandingPage/invoice/'.$kode_bayar);
   }
