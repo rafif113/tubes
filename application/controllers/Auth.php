@@ -29,7 +29,7 @@ class Auth extends CI_Controller{
       $password = $this->input->post('password',true);
       $data = array(
               'username' => $username,
-              'password' => password_verify($password)
+              'password' => md5($password)
           );
 
       $cek_user	= $this->Auth_models->login($data);
@@ -75,7 +75,7 @@ class Auth extends CI_Controller{
       $data = array(
               'id_user'   => $id_user,
               'username'  => $username,
-              'password'  => password_hash($password, PASSWORD_DEFAULT),
+              'password'  => md5($password),
               'level'     => 'User',
               'tgl_daftar'=> $date,
               'level'     => 'User',

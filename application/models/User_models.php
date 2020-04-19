@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_models extends CI_Model{
 
-  public function data_user($username)
+  public function getUser($username)
   {
     $query = $this->db->get_where('tb_user',['username' => $username]);
     return $query;
@@ -31,7 +31,6 @@ class User_models extends CI_Model{
           "no_telepon" => $no_telp,
           "status"     => "Terverifikasi"
     ];
-    var_dump($data);
     $this->db->where('id_user',$id_user);
     $this->db->update('tb_user',$data);
   }
@@ -41,7 +40,6 @@ class User_models extends CI_Model{
     $id_user      = $this->session->id_user;
     $this->db->where('id_user',$id_user);
     $q = $this->db->update('tb_user',$data);
-
     return $q;
   }
 

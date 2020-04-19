@@ -12,7 +12,7 @@ class User extends CI_Controller{
   public function profile()
   {
     $username = $this->session->username;
-    $user = $this->User_models->data_user($username)->row();
+    $user = $this->User_models->getUser($username)->row();
 
     $jdl['judul'] = 'Profile | Produk UMKM';
     $data['user']  = $user;
@@ -72,15 +72,15 @@ class User extends CI_Controller{
     }
   }
 
-    public function hapus_foto()
-    {
-        $data = [
-              'foto_user' => ''
-        ];
-        $this->User_models->update_foto($data);
-        $this->session->set_flashdata('flash','Dihapus');
-        redirect(base_url('User/profile'));
-    }
+  public function hapus_foto()
+  {
+      $data = [
+            'foto_user' => ''
+      ];
+      $this->User_models->update_foto($data);
+      $this->session->set_flashdata('flash','Dihapus');
+      redirect(base_url('User/profile'));
+  }
 
 
 
