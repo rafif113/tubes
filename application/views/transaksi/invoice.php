@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
-
-<head>
-  <!-- Icons -->
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/fontawesome.css">
-  <!-- Bootstrap css -->
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/bootstrap.css">
-  <!-- Theme css -->
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/color1.css" media="screen" id="color">
-</head>
-
-<body>
-  <!-- header start -->
-  <!-- thank-you section start -->
   <section class="section-b-space light-layout">
     <div class="container">
       <div class="row">
@@ -37,7 +20,6 @@
     </div>
   </section>
   <!-- Section ends -->
-
 
   <!-- order-detail section start -->
   <section class="section-b-space">
@@ -113,7 +95,7 @@
               <?php }else { ?>
                 <div class="delivery-sec">
                   <h3>Cetak Invoice</h3>
-                  <a href="<?php echo base_url('LandingPage/cetak/'.$transaksi['kode_bayar']) ?>" class="btn rounded" style="background-color:#e7ab3c; color:#fff;" target="_BLANK" >Cetak Invoice</a>
+                  <a href="<?php echo base_url('Transaksi/cetak/'.$transaksi['kode_bayar']) ?>" class="btn rounded" style="background-color:#e7ab3c; color:#fff;" target="_BLANK" >Cetak Invoice</a>
                 </div>
               <?php } ?>
             </div>

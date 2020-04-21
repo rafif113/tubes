@@ -36,20 +36,10 @@
                             <input type="password" name="password" id="pass">
                             <small class="form-text text-danger"><?= form_error('password');?></small>
                         </div>
-                        <div class="group-input gi-check">
-                            <div class="gi-more">
-                                <label for="save-pass">
-                                    Save Password
-                                    <input type="checkbox" id="save-pass">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <a href="#" class="forget-pass">Forget your Password</a>
-                            </div>
-                        </div>
-                        <button type="submit" class="site-btn login-btn">Sign In</button>
+                        <button type="submit" class="site-btn login-btn">Login</button>
                     <?php echo form_close() ?>
                     <div class="switch-login">
-                        <a href="<?php echo base_url('auth/register') ?>" class="or-login">Or Create An Account</a>
+                        <a href="<?php echo base_url('auth/register') ?>" class="or-login">Buat akun sekarang</a>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@
 <section class="checkout-section spad">
   <div class="container checkout-form">
       <div class="row">
-        <?= form_open_multipart('User/upload_foto',array('method' =>'POST')) ?>
+        <?= form_open_multipart('Profile/upload_foto',array('method' =>'POST')) ?>
         <div class="container.fluid col-xl-3 col-lg-4 container checkout-form">
             <div class="col-lg-6 mb-5">
               <?php if ($user->foto_user == NULL): ?>
@@ -47,7 +47,7 @@
 
             <div class="pt-2">
               <a class="btn btn-danger btn-sm btn-block tombol-hapus-foto"
-              href="<?php echo base_url('user/hapus_foto') ?>">Hapus Foto Profile</a>
+              href="<?php echo base_url('Profile/hapus_foto') ?>">Hapus Foto Profile</a>
             </div>
 
 
@@ -59,7 +59,7 @@
 <!-- UPDATE PROFILE -->
         <div class="col-lg-6 offset-lg-1">
           <h4>Profile Anda</h4>
-          <?= form_open('user/profile_proses',array('method' =>'POST')) ?>
+          <?= form_open('Profile/profile_proses',array('method' =>'POST')) ?>
           <div class="row">
             <div class="col-lg-12">
               <label for="fir">Nama lengkap<span>*</span></label>

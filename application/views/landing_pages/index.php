@@ -3,19 +3,31 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-          <?php foreach ($artikel as $data ): ?>
-            <div class="single-hero-items set-bg" data-setbg="<?php echo base_url('images/').$data->gambar ?>">
+
+            <div class="single-hero-items set-bg" data-setbg="<?php echo base_url('images/sayuran.jpg')?>">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span><?php echo $data->sub_judul ?></span>
-                            <h1 class="text-white"><?php echo $data->judul ?></h1>
-                            <p class="text-white"><?php echo $data->keterangan ?></p>
+                            <span>Sayur</span>
+                            <h1 class="text-white">Sayur Mayur</h1>
+                            <p class="text-white">Sayuran merupakan sebutan umum bagi bahan pangan asal tumbuhan yang biasanya mengandung kadar air tinggi dan dikonsumsi dalam keadaan segar atau setelah diolah secara minimal. Sebutan untuk beraneka jenis sayuran disebut sebagai sayur-sayuran atau sayur-m</p>
                         </div>
                     </div>
                 </div>
             </div>
-          <?php endforeach; ?>
+
+            <div class="single-hero-items set-bg" data-setbg="<?php echo base_url('images/kerajinan.jpg')?>">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <span>Kerajinan</span>
+                            <h1 class="text-white">Kerajinan Tangan</h1>
+                            <p class="text-white">Kerajinan Tangan adalah menciptakan suatu produk atau barang yang dilakukan oleh tangan dan memiliki fungsi pakai atau keindahan sehingga memiliki nilai jual. Kerajinan tangan yang memiliki kualitas tinggi tentu harganya akan mahal, jika kalian memiliki k</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
     </section>
@@ -61,12 +73,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                  <?php foreach ($kategori as $k): ?>
-                    <div class="product-large set-bg" data-setbg="<?php echo base_url('images/'.$k->gambar) ?>">
-                        <h2><?php echo $k->judul ?></h2>
-                        <a href="#"><?php echo $k->sub_judul ?></a>
+                    <div class="product-large set-bg" data-setbg="<?php echo base_url('images/sayuran.jpg') ?>">
+                        <h2>Sayur Mayur</h2>
+                        <a href="#">Sayuran</a>
                     </div>
-                  <?php endforeach; ?>
                 </div>
                   <div class="col-lg-8 offset-lg-1">
                       <div class="filter-control">
@@ -80,9 +90,9 @@
                               <div class="pi-pic">
                                   <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
                                   <ul>
-                                      <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">
+                                      <li class="w-icon active"><a href="<?php echo base_url('Produk/tambah_keranjang?id_produk='.$s->id_produk) ?>">
                                         <i class="icon_bag_alt"></i></a></li>
-                                      <li class="quick-view"><a href="<?php echo base_url('LandingPage/detail_produk/'.$s->id_produk) ?>">
+                                      <li class="quick-view"><a href="<?php echo base_url('Produk/detail_produk/'.$s->id_produk) ?>">
                                         + Lihat Barang</a></li>
                                   </ul>
                               </div>
@@ -106,11 +116,44 @@
     <!-- Women Banner Section End -->
 
     <!-- Deal Of The Week Section Begin-->
-    <section class="deal-of-week set-bg spad" data-setbg="<?php echo base_url('images/') ?>gabung.jpg">
-        <div class="container">
-            <div class="col-lg-6 text-center">
-            </div>
-        </div>
+    <section class="deal-of-week set-bg spad">
+              <div class="benefit-items">
+                  <div class="row">
+                      <div class="col-lg-4">
+                          <div class="single-benefit">
+                              <div class="sb-icon">
+                                  <img src="<?php echo base_url('assets/') ?>img/icon-1.png" alt="">
+                              </div>
+                              <div class="sb-text">
+                                  <h6>Free Shipping</h6>
+                                  <p>For all order over 99$</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="single-benefit">
+                              <div class="sb-icon">
+                                  <img src="<?php echo base_url('assets/') ?>img/icon-2.png" alt="">
+                              </div>
+                              <div class="sb-text">
+                                  <h6>Delivery On Time</h6>
+                                  <p>If good have prolems</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-4">
+                          <div class="single-benefit">
+                              <div class="sb-icon">
+                                  <img src="<?php echo base_url('assets/') ?>img/icon-1.png" alt="">
+                              </div>
+                              <div class="sb-text">
+                                  <h6>Secure Payment</h6>
+                                  <p>100% secure payment</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
     </section>
     <!-- Deal Of The Week Section End -->
 
@@ -130,9 +173,9 @@
                             <div class="pi-pic">
                                 <img src="<?php echo base_url('images/produk/').$s->foto_produk ?>" alt="">
                                 <ul>
-                                  <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$s->id_produk) ?>">
+                                  <li class="w-icon active"><a href="<?php echo base_url('Produk/tambah_keranjang?id_produk='.$s->id_produk) ?>">
                                     <i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="<?php echo base_url('LandingPage/detail_produk/'.$s->id_produk) ?>">+ Lihat Barang</a></li>
+                                    <li class="quick-view"><a href="<?php echo base_url('Produk/detail_produk/'.$s->id_produk) ?>">+ Lihat Barang</a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -160,117 +203,5 @@
     <!-- Man Banner Section End -->
 
     <!-- Latest Blog Section Begin -->
-    <section class="latest-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>From The Blog</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="<?php echo base_url('assets/') ?>img/latest-1.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>The Best Street Style From London Fashion Week</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="<?php echo base_url('assets/') ?>img/latest-2.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="<?php echo base_url('assets/') ?>img/latest-3.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                  </div>
-            <div class="benefit-items">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="<?php echo base_url('assets/') ?>img/icon-1.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Free Shipping</h6>
-                                <p>For all order over 99$</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="<?php echo base_url('assets/') ?>img/icon-2.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Delivery On Time</h6>
-                                <p>If good have prolems</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="<?php echo base_url('assets/') ?>img/icon-1.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Secure Payment</h6>
-                                <p>100% secure payment</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
-    </section>
+
     <!-- Latest Blog Section End -->

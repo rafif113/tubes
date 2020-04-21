@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produk_models extends CI_Model{
+class Produk_model extends CI_Model{
 
   public function getSayur()
   {
@@ -93,17 +93,5 @@ class Produk_models extends CI_Model{
     $id = "WHS".$id;
     return $id;
   }
-
-
-
-
-  // public function getSearch($keyword = null)
-  // {
-  //   if ($keyword) {
-  //     $this->db->like('nama_produk', $keyword);
-  //     $this->db->or_like('jenis_produk', $keyword);
-  //   }
-  //   return $this->db->get('tb_produk');
-  // }
 
 }

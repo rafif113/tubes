@@ -166,7 +166,7 @@
               <th>HARGA </th>
             </tr>
 
-          <?php foreach ($transaksi2 as $t): ?>
+          <?php foreach ($detail as $t): ?>
             <tr>
               <td>
                 <img src="<?php echo base_url('images/produk/'.$t->foto_produk) ?>" alt="" width="80">
@@ -188,14 +188,14 @@
                 <p style="font-size: 14px;">Subtotal : </p>
               </td>
               <td class="m-t-5" colspan="2" align="right">
-                <b style>Rp <?php echo number_format($transaksi1['total_harga_produk'])?></b>
+                <b style>Rp <?php echo number_format($sumharga['total_harga_produk'])?></b>
               </td>
             <tr class="pad-left-right-space">
               <td colspan="2" align="left">
                 <p style="font-size: 14px;">Harga Pengiriman :</p>
               </td>
               <td colspan="2" align="right">
-                <b>Rp <?php echo number_format($transaksi['total'] - $transaksi1['total_harga_produk']) ?></b>
+                <b>Rp <?php echo number_format($transaksi['total'] - $sumharga['total_harga_produk']) ?></b>
               </td>
             </tr>
             <tr class="pad-left-right-space ">

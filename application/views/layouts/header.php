@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fashi Template">
-    <meta name="keywords" content="Fashi, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?php echo $judul?></title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/themify-icons.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/style.css" type="text/css">
-</head>
-
+<?php $this->load->view('layouts/head'); ?>
 <body>
       <!-- Page Preloder -->
       <div id="preloder">
@@ -43,7 +18,7 @@
                   <div class="ht-left">
 
                       <?php if ($this->session->username): ?>
-                          <a class="phone-service" href="<?php echo base_url('User/profile') ?>"><i class=" fa fa-user"></i>
+                          <a class="phone-service" href="<?php echo base_url('Profile') ?>"><i class=" fa fa-user"></i>
                           Profile</a>
                       <?php endif; ?>
 
@@ -51,12 +26,12 @@
 
                   <?php if (!$this->session->username): ?>
                     <div class="ht-right">
-                        <a href="<?php echo base_url('auth/login') ?>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                        <a href="<?php echo base_url('Auth/login') ?>" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     </div>
                   <?php endif; ?>
                   <?php if ($this->session->username): ?>
                     <div class="ht-right">
-                        <a href="<?php echo base_url('auth/logout') ?>" class="login-panel tombol-logout"><i class="fa fa-user"></i>Logout</a>
+                        <a href="<?php echo base_url('Auth/logout') ?>" class="login-panel tombol-logout"><i class="fa fa-user"></i>Logout</a>
                     </div>
                   <?php endif; ?>
               </div>
@@ -84,13 +59,13 @@
                       <div class="col-lg-3 text-right col-md-3">
                           <ul class="nav-right">
                               <li class="heart-icon">
-                                  <a href="<?php echo base_url('LandingPage/wishlist') ?>">
+                                  <a href="<?php echo base_url('Produk/wishlist') ?>">
                                       <i class="icon_heart_alt"></i>
                                       <span><?php echo $data['total_rows'] ?></span>
                                   </a>
                               </li>
                               <li class="cart-icon">
-                                  <a href="<?php echo base_url('LandingPage/shopping_cart') ?>">
+                                  <a href="<?php echo base_url('Produk/shopping_cart') ?>">
                                       <i class="icon_bag_alt"></i>
                                       <span><?= $this->cart->total_items() ?></span>
                                   </a>
@@ -119,7 +94,7 @@
                                           <h5>Rp <?=number_format($this->cart->total())?></h5>
                                       </div>
                                       <div class="select-button">
-                                          <a href="<?php echo base_url('LandingPage/check_out') ?>" class="primary-btn checkout-btn">CHECK OUT</a>
+                                          <a href="<?php echo base_url('Transaksi/check_out') ?>" class="primary-btn checkout-btn">CHECK OUT</a>
                                       </div>
                                   </div>
                               </li>
@@ -155,13 +130,12 @@
                   <nav class="nav-menu mobile-menu">
                       <ul>
                           <li><a href="<?php echo base_url() ?>">Beranda</a></li>
-                          <li><a href="<?php echo base_url('LandingPage/shop') ?>">Produk</a></li>
+                          <li><a href="<?php echo base_url('Produk') ?>">Produk</a></li>
                           <li><a href="#">Halaman Lainnya</a>
                               <ul class="dropdown">
-                                  <li><a href="<?php echo base_url('LandingPage/faq') ?>">Faq</a></li>
-                                  <li><a href="<?php echo base_url('LandingPage/shopping_cart') ?>">Keranjang</a></li>
-                                  <li><a href="<?php echo base_url('LandingPage/check_out') ?>">Checkout</a></li>
-                                  <li><a href="<?php echo base_url('LandingPage/tunggu_pembayaran') ?>">Daftar Transaksi</a></li>
+                                  <li><a href="<?php echo base_url('Produk/shopping_cart') ?>">Keranjang</a></li>
+                                  <li><a href="<?php echo base_url('Transaksi/check_out') ?>">Checkout</a></li>
+                                  <li><a href="<?php echo base_url('Transaksi/tunggu_pembayaran') ?>">Daftar Transaksi</a></li>
                               </ul>
                           </li>
 

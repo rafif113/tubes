@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                    <a href="<?php echo base_url() ?>"><i class="fa fa-home"></i> Home</a>
                     <span>Shop</span>
                 </div>
             </div>
@@ -35,8 +35,6 @@
                     </ul>
                   <?php endforeach ?>
                 </div>
-
-
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="product-show-option">
@@ -64,13 +62,13 @@
                                 <div class="pi-pic">
                                     <img src="<?php echo base_url('images/produk/'.$p->foto_produk) ?>" alt="">
                                     <div class="icon tombol-wishlist">
-                                        <a href="<?php echo base_url('LandingPage/tambah_wishlist/'.$p->id_produk) ?>" style="color: #343a40;"><i class="icon_heart_alt"></i></a>
+                                        <a href="<?php echo base_url('Produk/tambah_wishlist/'.$p->id_produk) ?>" style="color: #343a40;"><i class="icon_heart_alt"></i></a>
                                     </div>
                                     <ul>
-                                        <li class="w-icon active"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$p->id_produk) ?>">
+                                        <li class="w-icon active"><a href="<?php echo base_url('Produk/tambah_keranjang?id_produk='.$p->id_produk) ?>">
                                           <i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="<?php echo base_url('LandingPage/detail_produk/'.$p->id_produk) ?>">
-                                          + Lihat Barang</a></li>
+                                        <li class="quick-view"><a href="<?php echo base_url('Produk/detail_produk/'.$p->id_produk) ?>">
+                                          + Lihat Produk</a></li>
                                     </ul>
                                 </div>
                                 <div class="pi-text">

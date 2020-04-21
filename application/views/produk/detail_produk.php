@@ -44,7 +44,7 @@
                                         </tr>
                                         <tr>
                                             <td>Stok Produk:</td>
-                                            <td><?php echo $produk->stok_produk ?> Stok</td>
+                                            <td><?php echo $produk->jumlah_produk ?> Stok</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -59,10 +59,18 @@
                                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                         <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                     </ul>
-                                    <form class="d-inline-block">
-                                        <a href="<?php echo base_url('LandingPage/tambah_wishlist/'.$produk->id_produk) ?>" style="color:#212121;" class="wishlist-btn"><i class="fa fa-heart"></i><span
-                                                class="title-font">Add To WishList</span></a>
-                                    </form>
+                                    <?php if ($this->session->username): ?>
+                                      <form class="d-inline-block">
+                                          <a href="<?php echo base_url('Produk/tambah_wishlist/'.$produk->id_produk) ?>" style="color:#212121;" class="wishlist-btn"><i class="fa fa-heart"></i><span
+                                                  class="title-font">Add To WishList</span></a>
+                                      </form>
+                                    <?php else: ?>
+                                      <form class="d-inline-block">
+                                          <a href="<?php echo base_url('Auth/login') ?>" style="color:#212121;" class="wishlist-btn"><i class="fa fa-heart"></i><span
+                                                  class="title-font">Add To WishList</span></a>
+                                      </form>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
@@ -82,7 +90,7 @@
                                                     class="ti-angle-right"></i></button></span></div>
                                 </div>
                             </div>
-                            <div class="product-buttons"><a href="<?php echo base_url('Barang/tambah_keranjang?id_produk='.$produk->id_produk) ?>"  data-target="#addtocart"
+                            <div class="product-buttons"><a href="<?php echo base_url('Produk/tambah_keranjang?id_produk='.$produk->id_produk) ?>"  data-target="#addtocart"
                                     class="btn btn-solid">Tambah Keranjang</a>
                             </div>
                         </div>
@@ -150,7 +158,3 @@
         </div>
     </section>
     <!-- product-tab ends -->
-
-    <script src="<?php echo base_url() ?>/assets/js2/jquery-3.3.1.min.js"></script>
-    <script src="<?php echo base_url() ?>/assets/js2/lazysizes.min.js"></script>
-    <script src="<?php echo base_url() ?>/assets/js2/script.js"></script>

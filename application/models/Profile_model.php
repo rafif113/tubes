@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User_models extends CI_Model{
+class Profile_model extends CI_Model{
 
   public function getUser($username)
   {
@@ -35,12 +35,12 @@ class User_models extends CI_Model{
     $this->db->update('tb_user',$data);
   }
 
-  public function update_foto($data)
+  public function updateFoto($data)
   {
-    $id_user      = $this->session->id_user;
+    $id_user = $this->session->id_user;
     $this->db->where('id_user',$id_user);
-    $q = $this->db->update('tb_user',$data);
-    return $q;
+    $query   = $this->db->update('tb_user',$data);
+    return $query;
   }
 
 }

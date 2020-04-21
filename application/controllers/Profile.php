@@ -1,22 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller{
+class Profile extends CI_Controller{
 
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('User_models');
+    $this->load->model('Profile_model');
   }
 
-  public function profile()
+  public function index()
   {
     $username = $this->session->username;
-    $user = $this->User_models->getUser($username)->row();
+    $judul['judul']  = 'Profile | Produk UMKM';
+    $data['user']    = $this->Profile_model->getUser($username)->row();
 
-    $jdl['judul'] = 'Profile | Produk UMKM';
-    $data['user']  = $user;
-    $this->load->view('layouts/header', $jdl);
+    $this->load->view('layouts/header', $judul);
     $this->load->view('landing_pages/profile',$data);
     $this->load->view('layouts/footer');
   }
@@ -33,11 +32,11 @@ class User extends CI_Controller{
     $this->form_validation->set_rules('email','Email','required|valid_email');
 
     if ($this->form_validation->run() == FALSE) {
-      echo "as";
+      $this->index();
     }else {
-      $this->User_models->update();
+      $this->Profile_model->update();
       $this->session->set_flashdata('flash','Diubah');
-      redirect('user/profile');
+      redirect('Profile');
     }
   }
 
@@ -46,28 +45,27 @@ class User extends CI_Controller{
     if (empty($_FILES['foto_user']['name'])) {
     $this->form_validation->set_rules('foto_user','Foto User','required');
       if ($this->form_validation->run() == FALSE) {
-    $this->profile();
+    $this->index();
     }
   }else {
     $config['upload_path']          = './uploads/';
     $config['allowed_types']        = 'gif|jpg|png|jpeg';
     $config['max_size']             = 2000;
     $config['encrypt_name']         = TRUE;
-
     $this->load->library('upload', $config);
 
     if (! $this->upload->do_upload('foto_user')) {
       $this->session->set_flashdata('status','File gagal diupload.');
-      redirect(base_url('User/profile'));
+      redirect(base_url('Profile'));
       }else {
-      $foto_user    = $this->upload->data('file_name');
+      $foto_user = $this->upload->data('file_name');
+
       $data = [
             'foto_user' => $foto_user
       ];
-      $this->User_models->update_foto($data);
+      $this->Profile_model->update_foto($data);
       $this->session->set_flashdata('flash','Diubah');
-      redirect(base_url('User/profile'));
-
+      redirect(base_url('Profile'));
       }
     }
   }
@@ -77,11 +75,8 @@ class User extends CI_Controller{
       $data = [
             'foto_user' => ''
       ];
-      $this->User_models->update_foto($data);
+      $this->Profile_model->updateFoto($data);
       $this->session->set_flashdata('flash','Dihapus');
-      redirect(base_url('User/profile'));
+      redirect(base_url('Profile'));
   }
-
-
-
 }

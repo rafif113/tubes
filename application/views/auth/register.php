@@ -39,7 +39,7 @@
                         <button type="submit" class="site-btn register-btn">REGISTER</button>
                     <?php echo form_close() ?>
                     <div class="switch-login">
-                        <a href="<?php echo base_url('auth/login') ?>" class="or-login">Or Login</a>
+                        <a href="<?php echo base_url('auth/login') ?>" class="or-login">Login Sekarang</a>
                     </div>
                 </div>
             </div>
