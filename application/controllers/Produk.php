@@ -92,8 +92,9 @@ class Produk extends CI_Controller{
           'price'=> $data['produk']->harga_produk,
           'name' => $data['produk']->nama_produk
       );
-      $this->cart->insert($data);
-      redirect('Produk/shopping_cart');
+        $this->cart->insert($data);
+        redirect('Produk/shopping_cart');
+
     }else {
       $this->cart->destroy();
       redirect(base_url('Auth/login'));
@@ -121,10 +122,46 @@ class Produk extends CI_Controller{
           'qty'   => $qty
       );
       $this->cart->update($data);
-      redirect(base_url('Produk/shopping_cart'));
+      redirect('Produk/shopping_cart');
 
     }else {
-      redirect(base_url('Produk/shopping_cart'));
+      redirect('Produk/shopping_cart');
     }
   }
+
+  public function ulasan()
+  {
+    $id_produk = $this->input->post('id_produk');
+
+    $this->form_validation->set_rules('isi_testimoni','Deskripsi Ulasan','required');
+    $this->form_validation->set_rules('rating','Rating','required|decimal');
+    if ($this->form_validation->run() == FALSE) {
+      echo "<script>alert('".form_error('rating').'\n'.form_error('isi_testimoni')."');history.go(-1);</script>";
+    }else {
+      $id_testimoni  = $this->Produk_model->idTestimoni();
+      $id_user       = $this->session->id_user;
+      $isi_testimoni = $this->input->post('isi_testimoni');
+      $rating        = $this->input->post('rating');
+      $tgl_testimoni = date('Y-m-d');
+      $validasi      = $this->Produk_model->getValidasiUlasan($id_user,$id_produk)->result();
+
+      if (empty($validasi)) {
+        $this->session->set_flashdata('ulasan_gagal','Anda belum membeli produk ini.');
+        redirect('Produk/detail_produk/'.$id_produk);
+      }else {
+        $data = array(
+            'id_testimoni'   => $id_testimoni,
+            'id_user'        => $id_user,
+            'id_produk'      => $id_produk,
+            'isi_testimoni'  => $isi_testimoni,
+            'rating'         => $rating,
+            'tgl_testimoni'  => $tgl_testimoni
+        );
+        $result = $this->Produk_model->insertUlasan($data);
+        $this->session->set_flashdata('ulasan_berhasil','Ulasan berhasil ditambah.');
+        redirect('Produk/detail_produk/'.$id_produk);
+      }
+    }
+  }
+
 }

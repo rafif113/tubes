@@ -48,10 +48,10 @@ class Profile extends CI_Controller{
     $this->index();
     }
   }else {
-    $config['upload_path']          = './uploads/';
-    $config['allowed_types']        = 'gif|jpg|png|jpeg';
-    $config['max_size']             = 2000;
-    $config['encrypt_name']         = TRUE;
+    $config['upload_path']   = './uploads/';
+    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+    $config['max_size']      = 2000;
+    $config['encrypt_name']  = TRUE;
     $this->load->library('upload', $config);
 
     if (! $this->upload->do_upload('foto_user')) {
@@ -63,7 +63,7 @@ class Profile extends CI_Controller{
       $data = [
             'foto_user' => $foto_user
       ];
-      $this->Profile_model->update_foto($data);
+      $this->Profile_model->updateFoto($data);
       $this->session->set_flashdata('flash','Diubah');
       redirect(base_url('Profile'));
       }

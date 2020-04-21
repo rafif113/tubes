@@ -2,6 +2,8 @@ const flashData  = $('.flash-data').data('flashdata');
 const flashData1 = $('.login-first').data('flashdata');
 const flashData2 = $('.flash-login').data('flashdata');
 const flashData3 = $('.flash-payment').data('flashdata');
+const flashData4 = $('.validasi_ulasan_gagal').data('flashdata');
+const flashData5 = $('.validasi_ulasan_berhasil').data('flashdata');
 
 
 if (flashData) {
@@ -35,6 +37,22 @@ if (flashData3) {
   text: flashData3,
   footer: '<a href="http://localhost/tubes/User/profile">Halaman Profile</a>'
 })
+}
+
+if (flashData4) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: flashData4
+  });
+}
+
+if (flashData5) {
+  Swal.fire({
+    title: 'Ulasan ',
+    text: flashData5,
+    icon: 'success'
+  });
 }
 
 $('.tombol-hapus').on('click', function (e){

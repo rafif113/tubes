@@ -22,10 +22,4 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/style.css" type="text/css">
-
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/fontawesome.css">
-    <!-- Bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/bootstrap.css">
-    <!-- Theme css -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/color1.css" media="screen" id="color">
 </head>

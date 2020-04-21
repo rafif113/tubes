@@ -1,9 +1,3 @@
-
-    <!-- Partner Logo Section Begin -->
-
-    <!-- Partner Logo Section End -->
-
-
 <!-- Footer Section Begin -->
 <footer class="footer-section">
     <div class="container">

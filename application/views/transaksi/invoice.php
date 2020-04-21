@@ -1,20 +1,18 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/fontawesome.css">
+<!-- Bootstrap css -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/bootstrap.css">
+<!-- Theme css -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets') ?>/css2/color1.css" media="screen" id="color">
+
   <section class="section-b-space light-layout">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>
-            <div class="success-text">
-              <h2>Detail Transaksi </h2>
-              <p><?php echo $transaksi['status_transaksi'] ?></p>
-              <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
-            </div>
-          <?php }else { ?>
             <div class="success-text"><i class="fa fa-success fa-check-circle" aria-hidden="true"></i>
               <h2>Detail Transaksi</h2>
-              <p><?php echo $transaksi['status_transaksi'] ?></p>
+              <p><?php echo $sumharga['status'] ?></p>
               <p>Kode Bayar: <?php echo $transaksi['kode_bayar'] ?></p>
             </div>
-          <?php } ?>
         </div>
       </div>
     </div>
@@ -83,8 +81,8 @@
               </ul>
             </div>
             <div class="col-sm-12 payment-mode">
-              <h4>Metode Pembayaran</h4>
-              <p>Transfer melalui rekening yang tersedia</p>
+              <h4>Status Transaksi</h4>
+              <p><?php echo $transaksi['status_transaksi'] ?></p>
             </div>
             <div class="col-md-12">
               <?php if ($transaksi['status_transaksi'] == 'Belum dibayar'){ ?>

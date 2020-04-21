@@ -10,8 +10,8 @@
 <script src="<?php echo base_url('assets/') ?>js/jquery.slicknav.js"></script>
 <script src="<?php echo base_url('assets/') ?>js/owl.carousel.min.js"></script>
 <script src="<?php echo base_url('assets/') ?>js/main.js"></script>
-<script src="<?= base_url('assets/js/sweetalert2.all.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/myscript.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/sweetalert2.all.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/myscript.js'); ?>"></script>
 
 <script src="<?php echo base_url() ?>/assets/js2/jquery-3.3.1.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/js2/lazysizes.min.js"></script>

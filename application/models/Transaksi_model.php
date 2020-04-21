@@ -37,28 +37,28 @@ class Transaksi_model extends CI_Model{
   public function getTransaksi()
   {
     $id_user   = $this->session->id_user;
-    $procedure = "CALL view_transaksi_user('$id_user')";
+    $procedure = "CALL pview_transaksi_user('$id_user')";
     $query     = $this->db->query($procedure);
     return $query;
   }
 
   public function getTransaksiSingle($kode_bayar)
   {
-    $procedure = "CALL view_single_transaksi('$kode_bayar')";
+    $procedure = "CALL pview_single_transaksi('$kode_bayar')";
     $query     = $this->db->query($procedure);
     return $query;
   }
 
   public function getDetailTransaksi($kode_bayar)
   {
-    $procedure = "CALL view_detail_transaksi('$kode_bayar')";
+    $procedure = "CALL pview_detail_transaksi('$kode_bayar')";
     $query     = $this->db->query($procedure);
     return $query;
   }
 
   public function getSumHarga($kode_bayar)
   {
-    $procedure = "CALL view_total_harga_produk('$kode_bayar')";
+    $procedure = "CALL pview_status('$kode_bayar')";
     $query     = $this->db->query($procedure);
     return $query;
   }

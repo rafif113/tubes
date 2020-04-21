@@ -10,7 +10,7 @@
       <a href="<?php echo base_url('Transaksi/invoice/'.$t->kode_bayar) ?>" class="btn" style="background-color:#e7ab3c; color:#ffff;">Lihat Detail</a>
     </div>
     <div class="card-footer text-muted">
-      Batas Pembayaran  <?php echo date('d F Y H:i:s', strtotime($t->tanggal_deadline )); ?>
+      Tanggal Transaksi : <?php echo date('d F Y', strtotime($t->tanggal_deadline )); ?>
       <br>
     </div>
   </div>

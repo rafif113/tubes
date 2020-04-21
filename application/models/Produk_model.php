@@ -3,9 +3,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produk_model extends CI_Model{
 
+  public function idWishlist()
+  {
+    $wishlist = "WHS";
+    $q = "SELECT MAX(TRIM(REPLACE(id_wishlist,'WHS', ''))) as nama
+          FROM tb_wishlist WHERE id_wishlist LIKE '$wishlist%'";
+    $baris = $this->db->query($q);
+    $akhir = $baris->row()->nama;
+    $akhir++;
+    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
+    $id = "WHS".$id;
+    return $id;
+  }
+
+  public function idTestimoni()
+  {
+    $testimoni = "TST";
+    $q = "SELECT MAX(TRIM(REPLACE(id_testimoni,'TST', ''))) as nama
+          FROM tb_testimoni WHERE id_testimoni LIKE '$testimoni%'";
+    $baris = $this->db->query($q);
+    $akhir = $baris->row()->nama;
+    $akhir++;
+    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
+    $id = "TST".$id;
+    return $id;
+  }
+
   public function getSayur()
   {
-      $procedure = "CALL view_produk_sayur('Sayuran')";
+      $procedure = "CALL pview_produk_sayur('Sayuran')";
       $query     = $this->db->query($procedure);
       return $query;
   }
@@ -24,7 +50,7 @@ class Produk_model extends CI_Model{
 
   public function getAllProduk()
   {
-      $procedure = 'CALL view_produk()';
+      $procedure = 'CALL pview_produk()';
       $query     = $this->db->query($procedure);
       return $query;
   }
@@ -37,6 +63,13 @@ class Produk_model extends CI_Model{
   public function getProdukRow($id_produk)
   {
       $query = $this->db->get_where('tb_produk',['id_produk' => $id_produk]);
+      return $query;
+  }
+
+  public function getValidasiUlasan($id_user,$id_produk)
+  {
+      $procedure = "CALL pvalidasi_ulasan('$id_user','$id_produk')";
+      $query     = $this->db->query($procedure);
       return $query;
   }
 
@@ -81,17 +114,10 @@ class Produk_model extends CI_Model{
     $this->db->delete('tb_wishlist');
   }
 
-  public function idWishlist()
+  public function insertUlasan($data)
   {
-    $wishlist = "WHS";
-    $q = "SELECT MAX(TRIM(REPLACE(id_wishlist,'WHS', ''))) as nama
-          FROM tb_wishlist WHERE id_wishlist LIKE '$wishlist%'";
-    $baris = $this->db->query($q);
-    $akhir = $baris->row()->nama;
-    $akhir++;
-    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
-    $id = "WHS".$id;
-    return $id;
+    return $this->db->insert('tb_testimoni', $data);
   }
+
 
 }

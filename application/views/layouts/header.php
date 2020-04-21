@@ -74,7 +74,7 @@
                                           <table>
                                               <tbody>
                                                 <?php foreach ($this->cart->contents() as $index => $kr): ?>
-                                                  <?php $barang = $this->Produk_models->getProdukRow($kr['id'])->row();?>
+                                                  <?php $barang = $this->Produk_model->getProdukRow($kr['id'])->row();?>
                                                   <tr>
                                                     <td class="cart-pic"><img width='90px' src="<?php echo base_url('images/produk/'.$barang->foto_produk) ?>" alt=""></td>
 
