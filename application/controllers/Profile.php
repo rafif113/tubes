@@ -7,13 +7,13 @@ class Profile extends CI_Controller{
   {
     parent::__construct();
     $this->load->model('Profile_model');
+    $this->load->model('Produk_model');
   }
 
   public function index()
   {
-    $username = $this->session->username;
     $judul['judul']  = 'Profile | Produk UMKM';
-    $data['user']    = $this->Profile_model->getUser($username)->row();
+    $data['user']    = $this->Profile_model->getUser($this->session->username)->row();
 
     $this->load->view('layouts/header', $judul);
     $this->load->view('landing_pages/profile',$data);
@@ -60,9 +60,7 @@ class Profile extends CI_Controller{
       }else {
       $foto_user = $this->upload->data('file_name');
 
-      $data = [
-            'foto_user' => $foto_user
-      ];
+      $data = ['foto_user' => $foto_user];
       $this->Profile_model->updateFoto($data);
       $this->session->set_flashdata('flash','Diubah');
       redirect(base_url('Profile'));
@@ -72,9 +70,7 @@ class Profile extends CI_Controller{
 
   public function hapus_foto()
   {
-      $data = [
-            'foto_user' => ''
-      ];
+      $data = ['foto_user' => ''];
       $this->Profile_model->updateFoto($data);
       $this->session->set_flashdata('flash','Dihapus');
       redirect(base_url('Profile'));

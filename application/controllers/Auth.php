@@ -11,7 +11,7 @@ class Auth extends CI_Controller{
 
   public function login()
   {
-    $data['judul']='Login';
+    $data['judul'] = 'Login';
     $this->load->view('layouts/header',$data);
     $this->load->view('auth/login');
     $this->load->view('layouts/footer');
@@ -46,7 +46,7 @@ class Auth extends CI_Controller{
 
   public function register()
   {
-    $data['judul']='Register';
+    $data['judul'] = 'Register';
     $this->load->view('layouts/header',$data);
     $this->load->view('auth/register');
     $this->load->view('layouts/footer');
@@ -63,13 +63,13 @@ class Auth extends CI_Controller{
     }else {
       $id_user  = $this->Auth_model->id_user();
       $username = $this->input->post('username',true);
-      $password = $this->input->post('password',true);
+      $password = md5($this->input->post('password1'));
       $date     = date('Y-m-d h:i:s');
 
       $data = array(
               'id_user'   => $id_user,
               'username'  => $username,
-              'password'  => md5($password),
+              'password'  => $password,
               'level'     => 'User',
               'tgl_daftar'=> $date,
               'level'     => 'User',
@@ -90,5 +90,4 @@ class Auth extends CI_Controller{
     $this->session->sess_destroy();
     redirect(base_url());
   }
-
 }

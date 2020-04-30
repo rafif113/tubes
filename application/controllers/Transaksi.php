@@ -15,15 +15,21 @@ class Transaksi extends CI_Controller{
   {
     if ($this->cart->contents()) {
       if ($this->session->username) {
-        $username           = $this->session->username;
-        $data['judul']      = 'CheckOut | Produk UMKM';
-        $data['cart']       = $this->cart->contents();
-        $data['pengiriman'] = $this->Transaksi_model->getPengiriman()->row();
-        $data['user']       = $this->Profile_model->getUser($username)->row();
+       $data['user']  = $this->Profile_model->getUser($this->session->username)->row();
+        if (empty($data['user']->alamat && $data['user']->no_telepon)) {
+          $this->session->set_flashdata('profile','Lengkapi profile terlebih dahulu!');
+          redirect(base_url('profile'));
+        } else {
+          $username           = $this->session->username;
+          $data['judul']      = 'CheckOut | Produk UMKM';
+          $data['cart']       = $this->cart->contents();
+          $data['pengiriman'] = $this->Transaksi_model->getPengiriman()->row();
+          $data['user']       = $this->Profile_model->getUser($username)->row();
 
-        $this->load->view('layouts/header', $data);
-        $this->load->view('transaksi/check_out', $data);
-        $this->load->view('layouts/footer');
+          $this->load->view('layouts/header', $data);
+          $this->load->view('transaksi/check_out', $data);
+          $this->load->view('layouts/footer');
+        }
       }else {
         redirect(base_url('Auth/login'));
       }

@@ -36,23 +36,19 @@ class Produk_model extends CI_Model{
       return $query;
   }
 
-  public function getSembako()
-  {
-      $query = $this->db->get_where('tb_produk',['jenis_produk' => 'Sembako']);
-      return $query;
-  }
-
   public function getBuah()
   {
       $query = $this->db->get_where('tb_produk',['jenis_produk' => 'Buah']);
       return $query;
   }
 
-  public function getAllProduk()
+  public function getProdukPagination($limit, $start, $keyword = null)
   {
-      $procedure = 'CALL pview_produk()';
-      $query     = $this->db->query($procedure);
-      return $query;
+    if ($keyword) {
+     $this->db->like('nama_produk', $keyword);
+     $this->db->or_like('jenis_produk',$keyword);
+    }
+    return $this->db->get('tb_produk', $limit, $start);
   }
 
   public function getProdukSingle($id)
@@ -79,16 +75,6 @@ class Produk_model extends CI_Model{
       $this->db->select('jenis_produk');
       $query =  $this->db->get('tb_produk');
       return $query;
-  }
-
-  public function getJumlahData()
-  {
-      $query = $this->db->get('tb_produk');
-        if ($query->num_rows() > 0) {
-          return $query;
-        }else {
-          return 0;
-        }
   }
 
   public function getWishlist()
@@ -119,5 +105,14 @@ class Produk_model extends CI_Model{
     return $this->db->insert('tb_testimoni', $data);
   }
 
-
+  public function getUlasan($id_produk)
+  {
+    $this->db->select('tb_testimoni.*,tb_produk.*,tb_user.*');
+    $this->db->from('tb_testimoni');
+    $this->db->join('tb_produk', 'tb_produk.id_produk = tb_testimoni.id_produk');
+    $this->db->join('tb_user', 'tb_user.id_user = tb_testimoni.id_user');
+    $this->db->where('tb_testimoni.id_produk',$id_produk);
+    $query = $this->db->get();
+    return $query;
+  }
 }

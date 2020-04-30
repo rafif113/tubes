@@ -4,6 +4,7 @@ const flashData2 = $('.flash-login').data('flashdata');
 const flashData3 = $('.flash-payment').data('flashdata');
 const flashData4 = $('.validasi_ulasan_gagal').data('flashdata');
 const flashData5 = $('.validasi_ulasan_berhasil').data('flashdata');
+const flashData6 = $('.flash-profile').data('flashdata');
 
 
 if (flashData) {
@@ -52,6 +53,14 @@ if (flashData5) {
     title: 'Ulasan ',
     text: flashData5,
     icon: 'success'
+  });
+}
+
+if (flashData6) {
+  Swal.fire({
+    icon: 'warning',
+    title: 'Oops...',
+    text: flashData6,
   });
 }
 

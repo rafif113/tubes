@@ -27,47 +27,36 @@
                     </ul>
                   <?php endforeach ?>
                 </div>
-                <div class="filter-widget">
-                    <h4 class="fw-title">Top Produk</h4>
-                    <?php foreach ($produk as $k ) : ?>
-                    <ul class="filter-catagories">
-                        <li><a href="#"><?php echo $k->nama_produk ?></a></li>
-                    </ul>
-                  <?php endforeach ?>
-                </div>
             </div>
             <div class="col-lg-9 order-1 order-lg-2">
                 <div class="product-show-option">
                     <div class="row">
                         <div class="col-lg-7 col-md-7">
-                            <div class="select-option">
-                                <select class="sorting">
-                                    <option value="">Default Sorting</option>
-                                </select>
-                                <select class="p-show">
-                                    <option value="">Show:</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="col-lg-5 col-md-5 text-right">
-                            <p>Show <?php echo $jumlah ?> Product</p>
+                            <p>Show <?php echo $total ?> Product</p>
                         </div>
                     </div>
                 </div>
                 <div class="product-list">
                     <div class="row">
+                      <?php if (empty($produk)): ?>
+                        <div class="alert alert-danger col-12 text-center" role="alert">
+                          Produk belum tersedia !
+                        </div>
+                      <?php endif; ?>
                       <?php foreach ($produk as $p ) : ?>
                         <div class="col-lg-4 col-sm-6">
                             <div class="product-item">
                                 <div class="pi-pic">
-                                    <img src="<?php echo base_url('images/produk/'.$p->foto_produk) ?>" alt="">
+                                    <img src="<?php echo base_url('images/produk/'.$p->foto_produk) ?>"  height="250">
                                     <div class="icon tombol-wishlist">
-                                        <a href="<?php echo base_url('Produk/tambah_wishlist/'.$p->id_produk) ?>" style="color: #343a40;"><i class="icon_heart_alt"></i></a>
+                                        <a href="<?php echo base_url('produk/tambah_wishlist/'.$p->id_produk) ?>" style="color: #343a40;"><i class="icon_heart_alt"></i></a>
                                     </div>
                                     <ul>
-                                        <li class="w-icon active"><a href="<?php echo base_url('Produk/tambah_keranjang?id_produk='.$p->id_produk) ?>">
+                                        <li class="w-icon active"><a href="<?php echo base_url('produk/tambah_keranjang?id_produk='.$p->id_produk) ?>">
                                           <i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="<?php echo base_url('Produk/detail_produk/'.$p->id_produk) ?>">
+                                        <li class="quick-view"><a href="<?php echo base_url('produk/detail_produk/'.$p->id_produk) ?>">
                                           + Lihat Produk</a></li>
                                     </ul>
                                 </div>
@@ -84,6 +73,7 @@
                         </div>
                       <?php endforeach ?>
                     </div>
+                    <?php echo $this->pagination->create_links() ?>
                 </div>
             </div>
         </div>

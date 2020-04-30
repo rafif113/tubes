@@ -12,6 +12,7 @@
     </div>
 </div>
 <!-- Breadcrumb Form Section Begin -->
+<div class="flash-profile" data-flashdata="<?= $this->session->flashdata('profile') ?>"></div>
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
 <!-- UPDATE FOTO PROFILE -->
       <?php if (!empty($this->session->flashdata('status') ) ): ?>

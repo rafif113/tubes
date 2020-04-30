@@ -104,42 +104,51 @@
     </section>
     <!-- Section ends -->
 
+    <section class="blog-details spad">
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-lg-12">
+  					<div class="blog-details-inner">
+  						<div class="leave-comment">
+  							<h4>Leave A Comment</h4>
+                <?= form_open('Produk/ulasan','class="comment-form"',array('method' =>'POST')) ?>
+                <input type="text" name="id_produk" value="<?php echo $produk->id_produk ?>" hidden>
+  								<div class="row">
+  									<div class="col-lg-6">
+  										<input value="<?php echo $this->session->nama ?>" placeholder="Name" disabled>
+  									</div>
+  									<div class="col-lg-6">
+  										<input value="<?php echo $this->session->email ?>" placeholder="Email" disabled>
+  									</div>
+                    <div class="col-lg-6">
+  										<input type="text" placeholder="Rating" name="rating">
+  									</div>
+  									<div class="col-lg-12">
+  										<textarea placeholder="Review" name="isi_testimoni"></textarea>
+  										<button type="submit" class="site-btn">Kirim Review</button>
+  									</div>
+  								</div>
+  							<?= form_close() ?>
+  						</div>
 
-    <!-- product-tab starts -->
-    <section class="tab-product m-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-lg-12">
-                    <ul class="nav nav-tabs nav-material"  id="top-tab" role="tablist">
-                        <li class="nav-item"><a class="nav-link" style="background-color:#fff;color:black;" style= id="review-top-tab" data-toggle="tab"
-                                href="#top-review" role="tab" aria-selected="false">Tulis Ulasan</a>
-                            <div class="material-border"></div>
-                        </li>
-                    </ul>
-                    <div class="tab-content nav-material">
-                        <div class="tab-pane fade" id="top-review" role="tabpanel" aria-labelledby="review-top-tab">
-                            <?= form_open('Produk/ulasan','class="theme-form"',array('method' =>'POST')) ?>
-                                <input type="text" name="id_produk" value="<?php echo $produk->id_produk ?>" hidden>
-                                <div class="form-row mt-3">
-                                    <div class="col-md-12">
-                                        <label for="review">Rating</label>
-                                        <input type="text" name="rating" class="form-control" id="review"
-                                            placeholder="Example : 4.5">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label for="review">Review Title</label>
-                                        <textarea name="isi_testimoni" class="form-control" placeholder="Wrire Your Testimonial Here"
-                                            id="exampleFormControlTextarea1" rows="6"></textarea>
-                                    </div>
-                                    <div class="col-md-12 pb-5">
-                                        <button class="btn btn-solid" type="submit">Submit YOur Review</button>
-                                    </div>
-                                </div>
-                            <?= form_close() ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+              <?php foreach ($ulasan as $u): ?>
+              <div class="posted-by mt-5">
+                  <div class="pb-pic">
+                    <?php if ($u->foto_user == null): ?>
+                      <img style="border-radius:1000%;" src="<?php echo base_url('images/orang.jpg')?>" alt="" width="100" height="100">
+                    <?php else: ?>
+                      <img style="border-radius:1000%;" src="<?php echo base_url('uploads/'.$u->foto_user)?>" alt="" width="100" height="100">
+                    <?php endif; ?>
+                  </div>
+  							<div class="pb-text">
+  									<h5><?php echo $u->nama ?></h5>
+  								<p><?php echo $u->isi_testimoni ?></p>
+  							</div>
+  						</div>
+            <?php endforeach; ?>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</section>
     <!-- product-tab ends -->

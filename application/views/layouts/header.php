@@ -6,10 +6,11 @@
       </div>
 
       <?php
-    $id = $this->session->id_user;
-    $this->db->like('id_user' ,$id);
-    $this->db->from('tb_wishlist');
-    $data['total_rows'] = $this->db->count_all_results(); ?>
+        $id = $this->session->id_user;
+        $this->db->like('id_user' ,$id);
+        $this->db->from('tb_wishlist');
+        $data['total_rows'] = $this->db->count_all_results();
+      ?>
 
       <!-- Header Section Begin -->
       <header class="header-section">
@@ -18,20 +19,18 @@
                   <div class="ht-left">
 
                       <?php if ($this->session->username): ?>
-                          <a class="phone-service" href="<?php echo base_url('Profile') ?>"><i class=" fa fa-user"></i>
+                          <a class="phone-service" href="<?php echo base_url('profile') ?>"><i class=" fa fa-user"></i>
                           Profile</a>
                       <?php endif; ?>
 
                   </div>
-
-                  <?php if (!$this->session->username): ?>
+                  <?php if (empty($this->session->username)): ?>
                     <div class="ht-right">
-                        <a href="<?php echo base_url('Auth/login') ?>" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                        <a href="<?php echo base_url('auth/login') ?>" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     </div>
-                  <?php endif; ?>
-                  <?php if ($this->session->username): ?>
+                  <?php else: ?>
                     <div class="ht-right">
-                        <a href="<?php echo base_url('Auth/logout') ?>" class="login-panel tombol-logout"><i class="fa fa-user"></i>Logout</a>
+                        <a href="<?php echo base_url('auth/logout') ?>" class="login-panel tombol-logout"><i class="fa fa-user"></i>Logout</a>
                     </div>
                   <?php endif; ?>
               </div>
@@ -47,19 +46,21 @@
                           </div>
                       </div>
                       <div class="col-lg-7 col-md-7">
+                        <?= form_open('produk',array('method' =>'POST')) ?>
                           <div class="advanced-search">
-                              <button type="button" class="category-btn">All Categories</button>
+                              <a type="button" class="category-btn">All Categories</a>
                               <div class="input-group">
-                                  <input type="text" name="keyword" placeholder="Cari Produk UMKM...." autocomplete="off">
+                                  <input type="text" name="keyword" placeholder="Cari Produk UMKM...." autocomplete="off" autofocus>
                                   <button type="button"><i class="ti-search"></i></button>
                               </div>
+                              <?= form_close() ?>
                           </div>
                       </div>
                       <?php if ($this->session->username): ?>
                       <div class="col-lg-3 text-right col-md-3">
                           <ul class="nav-right">
                               <li class="heart-icon">
-                                  <a href="<?php echo base_url('Produk/wishlist') ?>">
+                                  <a href="<?php echo base_url('produk/wishlist') ?>">
                                       <i class="icon_heart_alt"></i>
                                       <span><?php echo $data['total_rows'] ?></span>
                                   </a>
@@ -94,7 +95,7 @@
                                           <h5>Rp <?=number_format($this->cart->total())?></h5>
                                       </div>
                                       <div class="select-button">
-                                          <a href="<?php echo base_url('Transaksi/check_out') ?>" class="primary-btn checkout-btn">CHECK OUT</a>
+                                          <a href="<?php echo base_url('transaksi/check_out') ?>" class="primary-btn checkout-btn">CHECK OUT</a>
                                       </div>
                                   </div>
                               </li>
@@ -130,12 +131,12 @@
                   <nav class="nav-menu mobile-menu">
                       <ul>
                           <li><a href="<?php echo base_url() ?>">Beranda</a></li>
-                          <li><a href="<?php echo base_url('Produk') ?>">Produk</a></li>
+                          <li><a href="<?php echo base_url('produk') ?>">Produk</a></li>
                           <li><a href="#">Halaman Lainnya</a>
                               <ul class="dropdown">
-                                  <li><a href="<?php echo base_url('Produk/shopping_cart') ?>">Keranjang</a></li>
-                                  <li><a href="<?php echo base_url('Transaksi/check_out') ?>">Checkout</a></li>
-                                  <li><a href="<?php echo base_url('Transaksi/tunggu_pembayaran') ?>">Daftar Transaksi</a></li>
+                                  <li><a href="<?php echo base_url('produk/shopping_cart') ?>">Keranjang</a></li>
+                                  <li><a href="<?php echo base_url('transaksi/check_out') ?>">Checkout</a></li>
+                                  <li><a href="<?php echo base_url('transaksi/tunggu_pembayaran') ?>">Daftar Transaksi</a></li>
                               </ul>
                           </li>
 

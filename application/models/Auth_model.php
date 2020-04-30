@@ -8,20 +8,20 @@ class Auth_model extends CI_Model{
     $this->db->where('username',$data['username']);
     $this->db->where('password',$data['password']);
     $this->db->where('level','User');
-    $query  = $this->db->get('tb_user');
+    $query = $this->db->get('tb_user');
     return $query;
   }
 
   public function id_user()
   {
-    $user = "USR";
-    $q = "SELECT MAX(TRIM(REPLACE(id_user,'USR', ''))) as nama
-          FROM tb_user WHERE id_user LIKE '$user%'";
+    $user  = "USR";
+    $q     = "SELECT MAX(TRIM(REPLACE(id_user,'USR', ''))) as nama
+              FROM tb_user WHERE id_user LIKE '$user%'";
     $baris = $this->db->query($q);
     $akhir = $baris->row()->nama;
     $akhir++;
-    $id =str_pad($akhir, 4, "0", STR_PAD_LEFT);
-    $id = "USR".$id;
+    $id    = str_pad($akhir, 4, "0", STR_PAD_LEFT);
+    $id    = "USR".$id;
     return $id;
   }
 

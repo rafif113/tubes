@@ -16,8 +16,6 @@ class LandingPage extends CI_Controller{
     $data['artikel']  = $this->Artikel_model->getAllData()->result();
     $data['sayuran']  = $this->Produk_model->getSayur()->result();
     $data['buah']     = $this->Produk_model->getBuah()->result();
-    $data['sembako']  = $this->Produk_model->getSembako()->result();
-    $data['kategori'] = $this->Artikel_model->getSayur()->result();
 
     $this->load->view('layouts/header', $data);
     $this->load->view('landing_pages/index', $data);

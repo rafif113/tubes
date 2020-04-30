@@ -1,4 +1,3 @@
-
 <div class="flash-login" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
     <!-- Hero Section Begin -->
     <section class="hero-section">

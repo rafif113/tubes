@@ -11,10 +11,27 @@ class Produk extends CI_Controller{
 
   public function index()
   {
-    $data['judul']    = 'Shop | Produk UMKM';
+    if ($this->input->post('keyword') || $this->session->kategori) {
+      $data['keyword'] = $this->input->post('keyword');
+      $this->session->set_userdata('keyword',$data['keyword']);
+    }else {
+      $this->session->unset_userdata('keyword');
+      $data['keyword'] = $this->session->keyword;
+    }
+
+    $this->db->like('nama_produk',$data['keyword']);
+    $this->db->or_like('jenis_produk',$data['keyword']);
+    $this->db->or_like('jenis_produk',$this->session->kategori);
+    $this->db->from('tb_produk');
+
+    $config['total_rows'] = $this->db->count_all_results();
+    $config['per_page']   = 6;
+    $this->pagination->initialize($config);
+    $data['start']    = $this->uri->segment(3);
+    $data['total']    = $config['total_rows'];
     $data['kategori'] = $this->Produk_model->getKategori()->result();
-    $data['produk']   = $this->Produk_model->getAllProduk()->result();
-    $data['jumlah']   = $this->Produk_model->getJumlahData()->num_rows();
+    $data['produk']   = $this->Produk_model->getProdukPagination($config['per_page'],$data['start'],$data['keyword'])->result();
+    $data['judul']    = 'Shop | Produk UMKM';
 
     $this->load->view('layouts/header', $data);
     $this->load->view('produk/shop', $data);
@@ -38,6 +55,7 @@ class Produk extends CI_Controller{
   {
     $data['judul']  = 'Detail | Produk UMKM';
     $data['produk'] = $this->Produk_model->getProdukSingle($id)->row();
+    $data['ulasan'] = $this->Produk_model->getUlasan($id)->result();
 
     $this->load->view('layouts/header',$data);
     $this->load->view('produk/detail_produk',$data);
@@ -118,7 +136,7 @@ class Produk extends CI_Controller{
     $qty = $this->input->post('qty');
     if ($rowid) {
       $data = array(
-          'rowid'   => $rowid,
+          'rowid' => $rowid,
           'qty'   => $qty
       );
       $this->cart->update($data);
@@ -134,7 +152,7 @@ class Produk extends CI_Controller{
     $id_produk = $this->input->post('id_produk');
 
     $this->form_validation->set_rules('isi_testimoni','Deskripsi Ulasan','required');
-    $this->form_validation->set_rules('rating','Rating','required|decimal');
+    $this->form_validation->set_rules('rating','Rating','required|numeric');
     if ($this->form_validation->run() == FALSE) {
       echo "<script>alert('".form_error('rating').'\n'.form_error('isi_testimoni')."');history.go(-1);</script>";
     }else {
@@ -163,5 +181,4 @@ class Produk extends CI_Controller{
       }
     }
   }
-
 }
